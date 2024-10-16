@@ -1096,10 +1096,12 @@ header .row {
 header .top-bar {
 	display: block;
 	background: #000000;
-	min-width: 220px;
-	min-height: 66px;
+	/* min-width: 200px; */
+	width: 130px;
+	/* min-height: 66px; */
+	height: 60px;
 	position: absolute;
-	left: 90px;
+	left: 0px;
 	top: 0;
 }
 header .logo {
@@ -1229,7 +1231,7 @@ header .logo a {
 /* dropdown nav */
 .main-navigation {
 	background: #000000;
-	padding: 24px 30px 42px;
+	padding: 24px 24px 42px;
 	margin: 0;
 	width: 100%;
 	height: auto;
@@ -1284,6 +1286,8 @@ header .logo a {
 		left: 25px;
 	}
 }
+
+#teste {margin:0}
 
 
 /** 
@@ -1864,6 +1868,10 @@ header .logo a {
 	-webkit-transform: scale(1.05);
 	-ms-transform: scale(1.05);
 	transform: scale(1.05);
+}
+
+#portfolio .portfolio-content{
+	padding-left: 80px;
 }
 
 /**
