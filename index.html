@@ -57,8 +57,7 @@
 	   			<h5>Prazer, meu nome é</h5>
 	   			<h1>Rafaella Duarte</h1>
 	   			<p class="intro-position">
-	   				<span>Analista de Dados</span>
-	   				<span>Engenheira de Dados</span> 
+	   				<span>Engenheira de Dados Júnior</span> 
 	   			</p>
 	   			<a class="button stroke smoothscroll" href="#about" title="">Mais sobre mim</a>
 				<p >
@@ -352,7 +351,7 @@
 			<div id="folio-wrapper" class="block-1-2 block-mob-full stack">
 			<div class="bgrid folio-item">
 				<div class="item-wrap">
-				<img src="images/portfolio/cnpj.webp" alt="The Data Girls">
+				<img src="images/portfolio/cnpj.jpg" alt="The Data Girls">
 					<a href="#modal-01" class="overlay">                  	                 
 						<div class="folio-item-table">
 						<div class="folio-item-cell">
@@ -390,7 +389,7 @@
 						<a href="#modal-03" class="overlay">                  	                 
 							<div class="folio-item-table">
 							<div class="folio-item-cell">
-								<h3 class="folio-title">Scraper Imobiliárias com Apache Airflow</h3>	     					    
+								<h3 class="folio-title">Scraper de Imobiliárias com Apache Airflow</h3>	     					    
 										<span class="folio-types">
 											ETL
 										</span>		     		
@@ -458,19 +457,19 @@
 			<!-- PROJETO 3 -->
 			<div id="modal-03" class="popup-modal slider mfp-hide">	
 				<div class="media">
-					<img src="images/portfolio/desenvolvimento.jpg" alt="" />
+					<img src="images/portfolio/modals/m-state-pipeline.png" alt="" />
 				</div>      	
 				<div class="description-box">
-					<h4>Criação de um pipeline de ETL para scrapear dados de imóveis à venda em 
-						sites de imobiliárias de uma região específica. Os dados 
-						(preço, localização, características dos imóveis) serão extraídos, 
-						transformados (limpeza e cálculo de insights) e carregados em um banco de dados. 
-						O resultado será visualizado em um dashboard interativo.</h4>		      
+					<h4>ETL Orquestrado com Apache Airflow</h4>		      
 					<p align="justify">
-						Python, Apache Airflow, 
-						PostgreSQL/MongoDB, Power BI
+						Pipeline de ETL criada para extrair, tratar e carregar dados de imóveis 
+						à venda em sites de imobiliárias de Uberlândia-MG. Os dados são processados 
+						e armazenados em um banco de dados, com visualização interativa em um 
+						dashboard. A orquestração e monitoramento são realizados com Apache Airflow, 
+						garantindo eficiência no fluxo de trabalho.
 					</p>
-					<div class="categories">Pipeline ELT, Scraper</div>		               
+					<div class="categories">Python, Apache Airflow, 
+						PostgreSQL, Power BI</div>		               
 				</div>
 				<div class="link-box">
 					<a href="">Detalhes</a>
@@ -502,7 +501,108 @@
 			============================================================= -->
 	        </div> 
    		</div>   
-   	</div> 
+   	</div>
+	   <div class="row">
+
+		<div class="col-six tab-full">
+
+		   <h3>Form Styles</h3>
+
+			  <form>
+					 <div>
+					  <label for="sampleInput">Seu email</label>
+					  <input class="full-width" type="email" placeholder="test@mailbox.com" id="sampleInput">
+				  </div>
+				  <div>
+					  <label for="sampleRecipientInput">Reason for contacting</label>
+					  <div class="ss-custom-select">
+						  <select class="full-width" id="sampleRecipientInput">
+								<option value="Option 1">Questões</option>
+								<option value="Option 2">Reportar</option>
+								<option value="Option 3">Outros</option>
+						  </select>
+					  </div>			         	
+				  </div>
+				
+					<label for="exampleMessage">Mensagem</label>
+					<textarea class="full-width" placeholder="Your message" id="exampleMessage"></textarea>
+
+					 <label class="add-bottom">
+						<input type="checkbox">			            
+						<span class="label-text">Envie uma cópia para você mesmo</span>
+					 </label>
+				
+					 <input class="button-primary" type="submit" value="Submit">
+
+			   </form>	            
+
+		   </div>         
+
+	 </div> <!-- /row -->
+			
+</section> <!--styles -->	
+
+ 
+<!-- contact
+================================================== -->
+ <section id="contact">
+
+	 <div class="row section-intro">
+		<div class="col-twelve">
+
+			<h5>Contato</h5>
+			<h1>Eu adoraria ouvir de você.</h1>
+
+			<p class="lead">Em desenvolvimento</p>
+
+		</div> 
+	</div> <!-- /section-intro -->
+
+	<div class="row contact-form">
+
+		<div class="col-twelve">
+
+		 <!-- form -->
+		 <form name="contactForm" id="contactForm" method="post" action="">
+			   <fieldset>
+
+			   <div class="form-field">
+						 <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
+			   </div>
+			   <div class="form-field">
+					  <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="">
+				</div>
+			   <div class="form-field">
+						 <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+				</div>                       
+			   <div class="form-field">
+					  <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required=""></textarea>
+				</div>                      
+			  <div class="form-field">
+				  <button class="submitform">Enviar</button>
+				  <div id="submit-loader">
+					 <div class="text-loader">Enviando...</div>                             
+						  <div class="s-loader">
+								   <div class="bounce1"></div>
+								   <div class="bounce2"></div>
+								   <div class="bounce3"></div>
+							 </div>
+						 </div>
+			   </div>
+
+			   </fieldset>
+		</form> <!-- Form End -->
+
+		 <!-- contact-warning -->
+		 <div id="message-warning"></div>            
+		 <!-- contact-success -->
+		   <div id="message-success">
+			<i class="fa fa-check"></i>Sua mensagem foi enviada, obrigada!<br>
+		   </div>
+
+	  </div> <!-- /col-twelve -->
+		
+	</div> <!-- /contact-form --> 
 	</section> 
    	<div class="row contact-info">
    		<div class="col-four tab-full">
