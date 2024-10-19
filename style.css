@@ -24,3 +24,22 @@ main{
 .card-board:hover{
     border-color:black;
 }
+
+.skill-logos {
+    display: flex;               /* Alinha os itens em linha */
+    flex-wrap: wrap;             /* Permite quebrar linha se necessário */
+    justify-content: center;     /* Centraliza os itens na linha */
+    list-style-type: none;       /* Remove marcadores de lista */
+    padding: 0;                  /* Remove o padding padrão */
+    margin: 0;                   /* Remove margens */
+}
+
+.skill-logos li {
+    margin: 10px;                /* Adiciona espaço entre os logos */
+}
+
+.skill-logos img {
+    display: block;              /* Garante que a imagem seja um bloco */
+    max-width: 100%;             /* Garante que a imagem não ultrapasse o tamanho definido */
+    height: auto;                /* Mantém a proporção da imagem */
+}
