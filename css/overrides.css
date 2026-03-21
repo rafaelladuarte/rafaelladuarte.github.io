@@ -982,20 +982,13 @@ ul.skill-logos li::before {
   overflow: hidden;
   margin-bottom: 2rem;
   transition: box-shadow var(--transition-base), transform var(--transition-base);
-  padding: 2.4rem 2.4rem 2.4rem 0;
-  border-left: 4px solid transparent;
+  padding: 3rem 3rem 3rem 0; /* Aumentado o espaço interno (padding) */
   position: relative;
 }
 
-/* Remove the global padding-top we don't need */
-#resume .timeline-block {
-  padding-top: 2rem;
-}
-
 #resume .timeline-block:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-  border-left-color: var(--clr-accent);
+  box-shadow: var(--shadow-lg); /* Efeito suave de shadow maior */
+  transform: translateY(-4px); /* Leve elevação sem bordas em volta */
 }
 
 /* UL items inside timeline */
@@ -1620,4 +1613,148 @@ a.button.stroke:hover {
   -webkit-transform: scale(1.08) !important;
   -ms-transform: scale(1.08) !important;
   transform: scale(1.08) !important;
+}
+
+/* ===================================================================
+ * Horizontal Timeline Override for Experiences
+ * ----------------------------------------------------------------- */
+@media screen and (min-width: 769px) {
+  #experiences.resume-timeline,
+  #education.resume-timeline {
+    max-width: 100%;
+    padding: 0 5%;
+  }
+
+  /* Make the exact row holding timeline blocks scroll horizontally */
+  #experiences .col-twelve:last-child,
+  #education .col-twelve:last-child {
+    overflow-x: auto;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--clr-accent) var(--clr-bg-light);
+  }
+
+  /* Custom Webkit scrollbar for the horizontal timeline container */
+  #experiences .col-twelve:last-child::-webkit-scrollbar,
+  #education .col-twelve:last-child::-webkit-scrollbar {
+    height: 8px;
+  }
+  #experiences .col-twelve:last-child::-webkit-scrollbar-track,
+  #education .col-twelve:last-child::-webkit-scrollbar-track {
+    background: var(--clr-bg-light-2);
+    border-radius: 4px;
+  }
+  #experiences .col-twelve:last-child::-webkit-scrollbar-thumb,
+  #education .col-twelve:last-child::-webkit-scrollbar-thumb {
+    background: var(--clr-accent-subtle);
+    border-radius: 4px;
+  }
+  #experiences .col-twelve:last-child::-webkit-scrollbar-thumb:hover,
+  #education .col-twelve:last-child::-webkit-scrollbar-thumb:hover {
+    background: var(--clr-accent);
+  }
+
+  /* Change the timeline wrap to horizontal */
+  #experiences .timeline-wrap,
+  #education .timeline-wrap {
+    display: inline-flex;
+    flex-direction: row;
+    padding-top: 5rem; /* Ajustado para eliminar espaço em branco excessivo */
+    margin-bottom: 2rem;
+    margin-top: 0;
+    position: relative;
+    min-width: 100%;
+  }
+
+  /* The horizontal connecting line */
+  #experiences .timeline-wrap::before,
+  #education .timeline-wrap::before {
+    top: 5rem; 
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--clr-accent);
+    opacity: 0.3;
+  }
+
+  /* Make each timeline block a fixed horizontal column */
+  #experiences .timeline-block,
+  #education .timeline-block {
+    flex: 0 0 540px; /* Largura maior dos cards */
+    margin-right: 4rem;
+    margin-top: 3rem; /* Espaço entre a linha horizontal e a borda superior do card */
+    padding: 3rem; /* Preenchimento igual nos 4 cantos */
+    position: relative;
+    height: auto;
+    overflow: visible; /* Garante que os ícones flutrem pra fora do card */
+  }
+
+  #experiences .timeline-block:last-child,
+  #education .timeline-block:last-child {
+    margin-right: 0;
+  }
+
+  /* The little dots/icons in the timeline */
+  #experiences .timeline-ico,
+  #education .timeline-ico {
+    left: 3rem; /* Alinhado com o padding interno */
+    top: -5.4rem; /* Centralizado sobre a linha horizontal */
+    margin-left: -2.4rem;
+    box-shadow: 0 0 0 6px var(--clr-bg-light); 
+    z-index: 2;
+  }
+
+  /* The header containing Job Title, Date and Badge (Placed inside the card now) */
+  #experiences .timeline-header,
+  #education .timeline-header {
+    position: static;
+    float: none;
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+    padding-left: 0;
+    margin-bottom: 2rem;
+  }
+  
+  #experiences .timeline-header h3,
+  #education .timeline-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* The content with the bullet points stays next */
+  #experiences .timeline-content,
+  #education .timeline-content {
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 0;
+    text-align: left;
+  }
+  
+  #experiences .timeline-content h4,
+  #education .timeline-content h4 {
+    font-size: 1.6rem;
+    padding-bottom: 1.2rem;
+  }
+
+  /* Reposition the little horizontal border under h4 */
+  #experiences .timeline-content h4::after,
+  #education .timeline-content h4::after {
+    left: 0;
+    transform: none;
+  }
+
+  /* Improve typography for the description */
+  #experiences .timeline-content p,
+  #education .timeline-content p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  #experiences .timeline-content p strong,
+  #education .timeline-content p strong {
+    font-weight: 600;
+  }
 }
