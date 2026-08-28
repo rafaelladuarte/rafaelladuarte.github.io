@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frontend - App de Biblioteca Pessoal - Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="booktrack.html">← Visão geral do projeto</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="booktrack.html" class="detail-back">← voltar à visão geral</a>
+    <p class="eyebrow">Frontend · Django</p>
+    <h1>Interface do App de Biblioteca Pessoal</h1>
+    <p class="detail-tagline">Frontend server-side em Django, consumindo a API REST do BookTrack para oferecer a interface de uso do acervo e do progresso de leitura.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">🔧 Em desenvolvimento ativo</div></div>
+      <div><div class="label">Stack</div><div class="value">Python · Django · Docker</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/booktrack-app" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/rafaelladuarte/booktrack-app</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Camada de apresentação do BookTrack: em vez de um frontend desacoplado (React/Vue consumindo a API via JavaScript), a escolha foi um app Django server-side, renderizando as páginas diretamente e chamando a API FastAPI internamente. É uma decisão deliberada para praticar integração entre dois frameworks Python com responsabilidades bem separadas - Django cuidando de views e templates, FastAPI cuidando de regra de negócio e dados.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Como se conecta ao backend</h2>
+      <p>O app Django atua como cliente da API FastAPI: cada view faz requisições HTTP autenticadas para os endpoints do BookTrack API e renderiza o resultado em templates server-side - sem duplicar regra de negócio, sem acesso direto ao banco de dados.</p>
+      <div class="flow-diagram">
+        <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrfe" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+          <rect x="10" y="50" width="140" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="76" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Navegador</text>
+          <text x="80" y="92" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">do usuário</text>
+
+          <line x1="150" y1="80" x2="198" y2="80" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrfe)"/>
+
+          <rect x="200" y="35" width="150" height="90" rx="2" fill="#3d0f18"/>
+          <text x="275" y="70" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Django</text>
+          <text x="275" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">views + templates</text>
+          <text x="275" y="103" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">books_ui</text>
+
+          <line x1="350" y1="80" x2="398" y2="80" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrfe)"/>
+          <text x="374" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#1c1516">HTTP</text>
+
+          <rect x="400" y="35" width="150" height="90" rx="2" fill="#c1596a"/>
+          <text x="475" y="70" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">BookTrack API</text>
+          <text x="475" y="88" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#ffffff">FastAPI</text>
+          <text x="475" y="103" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#ffffff">(ver detalhe do backend)</text>
+
+          <line x1="550" y1="80" x2="598" y2="80" stroke="#9c3245" stroke-width="1.5" marker-end="url(#arrfe)"/>
+          <rect x="600" y="50" width="90" height="60" rx="2" fill="#9c3245"/>
+          <text x="645" y="85" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#ffffff">PostgreSQL</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>Estrutura do projeto</h2>
+      <ul class="detail-list">
+        <li><code>books_ui/</code> - app Django com as views e a lógica de apresentação do acervo</li>
+        <li><code>templates/</code> - templates server-side renderizados pelo Django</li>
+        <li><code>config/</code> - configurações do projeto Django</li>
+        <li><code>Dockerfile</code> e <code>docker-compose.yml</code> - containerização, alinhada à mesma abordagem do backend</li>
+      </ul>
+    </div>
+
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/rafaelladuarte/booktrack-app" class="btn btn-primary">Ver repositório</a>
+      <a href="booktrack-fastapi.html" class="btn btn-ghost-light">Ver detalhes do backend →</a>
+      <a href="booktrack.html" class="btn btn-ghost-light">← Voltar à visão geral</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

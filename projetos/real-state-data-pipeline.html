@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline de Dados Imobiliários — Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+    <p class="eyebrow">Ingestão de dados · Web scraping</p>
+    <h1>Pipeline de Dados Imobiliários</h1>
+    <p class="detail-tagline">Coleta e processamento de dados de imóveis de sites de imobiliárias, com orquestração via Airflow e consumo em análises de mercado.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">⚠️ Em evolução</div></div>
+      <div><div class="label">Stack</div><div class="value">Python · Airflow · PostgreSQL · Power BI</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/real_state_data_pipeline" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/rafaelladuarte/real_state_data_pipeline</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Pipeline para acompanhar preços e características de imóveis anunciados em sites de imobiliárias, alimentando análises de mercado no Power BI. Diferente de projetos com API oficial, aqui o desafio central é o próprio scraping — sites de imobiliárias variam muito em estrutura e reforçam proteção anti-bot com frequência.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo da arquitetura</h2>
+      <p>O Airflow orquestra o ciclo completo: dispara o scraping, valida e transforma os dados coletados, e carrega em PostgreSQL — de onde o Power BI consome direto para os dashboards de análise.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="70" width="140" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="95" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Sites de</text>
+          <text x="80" y="111" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">imobiliárias</text>
+
+          <line x1="150" y1="100" x2="198" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow6)"/>
+
+          <rect x="200" y="55" width="150" height="90" rx="2" fill="#3d0f18"/>
+          <text x="275" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Scraper</text>
+          <text x="275" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">anti-bot</text>
+          <text x="275" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">handling</text>
+
+          <line x1="350" y1="100" x2="398" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow6)"/>
+
+          <rect x="400" y="55" width="150" height="90" rx="2" fill="#7a2334"/>
+          <text x="475" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Airflow</text>
+          <text x="475" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">orquestração</text>
+          <text x="475" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">+ validação</text>
+
+          <line x1="550" y1="100" x2="598" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow6)"/>
+
+          <rect x="600" y="65" width="140" height="70" rx="2" fill="#c1596a"/>
+          <text x="670" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">PostgreSQL</text>
+
+          <line x1="740" y1="100" x2="788" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow6)"/>
+
+          <rect x="790" y="70" width="100" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="840" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Power BI</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>O que foi implementado</h2>
+      <ul class="detail-list">
+        <li>Web scraping de múltiplos sites de imobiliárias</li>
+        <li>Pipeline de ingestão e transformação dos dados coletados</li>
+        <li>Orquestração completa via Airflow, do disparo do scraping à carga no banco</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      Maior desafio até agora: bloqueios anti-bot e a necessidade recorrente de atualizar o scraper conforme os sites mudam de estrutura — o tipo de manutenção que não aparece no código final, mas consome boa parte do tempo real de um pipeline de scraping.
+    </div>
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/rafaelladuarte/real_state_data_pipeline" class="btn btn-primary">Ver repositório</a>
+      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

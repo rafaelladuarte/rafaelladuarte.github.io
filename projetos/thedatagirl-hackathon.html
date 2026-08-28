@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline de Dados Empresariais (CNPJ) - Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+    <p class="eyebrow">Pipeline de dados · Hackathon</p>
+    <h1>Pipeline de Dados Empresariais (CNPJ)</h1>
+    <p class="detail-tagline">Pipeline completo - da ingestão de dados públicos empresariais à geração de insights - desenvolvido em 48h no Hackathon de Engenharia de Dados da A3Data (Challenge Women).</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">✅ Concluído</div></div>
+      <div><div class="label">Resultado</div><div class="value">🏆 2º lugar</div></div>
+      <div><div class="label">Stack</div><div class="value">Python · ETL · SQL · GCP</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/elladarte/thedatagirl_hackathon" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/elladarte/thedatagirl_hackathon</a></div></div>
+      <div><div class="label">Pitch</div><div class="value"><a href="https://youtu.be/bd6tAhl_dVQ" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">Vídeo (2 min)</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Desafio do Hackathon de Engenharia de Dados promovido pela A3Data (Challenge Women): construir, em tempo limitado, um pipeline completo sobre a base pública de CNPJs da Receita Federal (2010–2021) e responder perguntas de negócio como número de empresas ativas por mês/UF, aberturas e fechamentos por regime tributário, e qual CNAE tem o maior capital social médio no país.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo da arquitetura</h2>
+      <p>Um scraper percorre o portal da Receita Federal, baixa os arquivos <code>.ZIP</code> e extrai os <code>.CSV</code> direto para o Google Cloud Storage - mantendo o dado bruto na nuvem evita reprocessar a coleta a cada rodada de tratamento. O tratamento e a análise acontecem no BigQuery, e as respostas do desafio viram visualizações no Data Studio.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="70" width="130" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="75" y="95" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Receita</text>
+          <text x="75" y="111" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Federal (.zip)</text>
+
+          <line x1="140" y1="100" x2="188" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="190" y="60" width="140" height="80" rx="2" fill="#3d0f18"/>
+          <text x="260" y="92" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12.5" fill="#ffffff">Scraper</text>
+          <text x="260" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">extrai .csv</text>
+
+          <line x1="330" y1="100" x2="378" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="380" y="55" width="150" height="90" rx="2" fill="#7a2334"/>
+          <text x="455" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12.5" fill="#ffffff">Cloud Storage</text>
+          <text x="455" y="110" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">dado bruto</text>
+
+          <line x1="530" y1="100" x2="578" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="580" y="55" width="140" height="90" rx="2" fill="#c1596a"/>
+          <text x="650" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12.5" fill="#ffffff">BigQuery</text>
+          <text x="650" y="110" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#ffffff">tratamento</text>
+
+          <line x1="720" y1="100" x2="768" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="770" y="70" width="120" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="830" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Data Studio</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>Modelo de dados</h2>
+      <p>No BigQuery, a carga bruta virou uma tabela única com junção de empresas, estabelecimentos e sócios via CNPJ básico, combinada com as tabelas de domínio (município, país, motivo, natureza jurídica, qualificação do sócio e CNAE).</p>
+      <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/diagrama_DB.png" alt="Diagrama do modelo de dados no BigQuery" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+    </div>
+
+    <div class="detail-section">
+      <h2>Dashboards</h2>
+      <p>As 6 perguntas-chave do desafio - empresas ativas, fechamentos, aberturas, CNPJs de educação superior, CNAE com maior capital social médio e capital médio de pequeno porte por natureza jurídica - foram respondidas em relatórios interativos no Data Studio.</p>
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:16px;">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao1.png" alt="Dashboard - pergunta 1" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao2.png" alt="Dashboard - pergunta 2" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao3.png" alt="Dashboard - pergunta 3" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao4.png" alt="Dashboard - pergunta 4" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao5.png" alt="Dashboard - pergunta 5" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+        <img src="https://raw.githubusercontent.com/elladarte/thedatagirl_hackathon/main/images/dash_questao6.png" alt="Dashboard - pergunta 6" style="width:100%; border-radius:2px; border:1px solid var(--wine-light);">
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>O que foi implementado</h2>
+      <ul class="detail-list">
+        <li>Ingestão e processamento de dados públicos empresariais direto do portal da Receita Federal</li>
+        <li>Limpeza e organização dos dados brutos antes da carga no BigQuery</li>
+        <li>Geração de visualizações para responder às perguntas-chave do desafio, por município e por ano</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      🏆 2º lugar entre as 50 equipes do Challenge Women da A3Data
+    </div>
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/elladarte/thedatagirl_hackathon" class="btn btn-primary">Ver repositório</a>
+      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API RESTful de Gestão de Leituras - Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="booktrack.html">← Visão geral do projeto</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="booktrack.html" class="detail-back">← voltar à visão geral</a>
+    <p class="eyebrow">Backend · API REST</p>
+    <h1>API RESTful de Gestão de Leituras</h1>
+    <p class="detail-tagline">API em FastAPI para gerenciamento de biblioteca pessoal, com autenticação JWT, RBAC e modelagem de dados em Star Schema.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">✅ Concluído</div></div>
+      <div><div class="label">Stack</div><div class="value">Python 3.13 · FastAPI · PostgreSQL 16 · SQLAlchemy · Alembic · Docker</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/booktrack-fastapi" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/rafaelladuarte/booktrack-fastapi</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Projeto de estudo prático que foi além de um CRUD simples: uma API para gerenciar biblioteca pessoal, acompanhar progresso de leitura, importar coleções via CSV e gerar análises por gênero, autor e status de leitura - com uma view pública limitada, para que terceiros explorem parte do acervo com segurança. A modelagem de dados segue <strong style="color:var(--ink);">Star Schema</strong>, unindo engenharia de dados com boas práticas de API REST.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Arquitetura</h2>
+      <p>Toda requisição passa pela camada de middleware (autenticação JWT + RBAC) antes de chegar na camada de negócio (Service → Repository). O Redis já está desenhado na arquitetura como camada de cache e rate limiting, mas ainda não foi implementado - por isso aparece tracejado no diagrama.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrowbt" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+            <marker id="arrowbt2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#9c3245"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="100" width="120" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="70" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">Web / Mobile</text>
+          <text x="70" y="142" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">Django app</text>
+
+          <line x1="130" y1="130" x2="178" y2="130" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrowbt)"/>
+
+          <rect x="180" y="40" width="190" height="180" rx="2" fill="#3d0f18"/>
+          <text x="275" y="65" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">FastAPI</text>
+          <line x1="200" y1="78" x2="350" y2="78" stroke="#9c3245" stroke-width="1"/>
+          <text x="275" y="96" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">JWT Auth</text>
+          <text x="275" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">RBAC admin/viewer</text>
+          <line x1="200" y1="124" x2="350" y2="124" stroke="#9c3245" stroke-width="1"/>
+          <text x="275" y="142" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">Service layer</text>
+          <text x="275" y="158" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">Repository</text>
+          <line x1="200" y1="170" x2="350" y2="170" stroke="#9c3245" stroke-width="1"/>
+          <text x="275" y="190" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#f4e6e8">CSV import</text>
+
+          <line x1="370" y1="90" x2="418" y2="90" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowbt2)"/>
+          <line x1="370" y1="170" x2="418" y2="170" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrowbt)"/>
+
+          <rect x="420" y="55" width="150" height="70" rx="2" fill="none" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="495" y="83" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#9c3245">Redis</text>
+          <text x="495" y="100" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#9c3245">cache + rate limit</text>
+          <text x="495" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#9c3245">(planejado)</text>
+
+          <rect x="420" y="140" width="150" height="70" rx="2" fill="#c1596a"/>
+          <text x="495" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">PostgreSQL 16</text>
+          <text x="495" y="187" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#ffffff">Star Schema</text>
+
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo de autenticação e consumo</h2>
+      <p>Diagrama de sequência simplificado do login (com rate limit) e da consulta autenticada - as duas rotas mais representativas do funcionamento da API.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrseq" markerWidth="9" markerHeight="9" refX="7" refY="2.5" orient="auto">
+              <path d="M0,0 L7,2.5 L0,5 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <!-- lifelines -->
+          <text x="90" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#1c1516">Cliente</text>
+          <text x="330" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#1c1516">FastAPI</text>
+          <text x="570" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#1c1516">Redis</text>
+          <text x="800" y="24" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#1c1516">PostgreSQL</text>
+          <line x1="90" y1="34" x2="90" y2="320" stroke="#e0d5d7" stroke-width="1.5"/>
+          <line x1="330" y1="34" x2="330" y2="320" stroke="#e0d5d7" stroke-width="1.5"/>
+          <line x1="570" y1="34" x2="570" y2="320" stroke="#e0d5d7" stroke-width="1.5"/>
+          <line x1="800" y1="34" x2="800" y2="320" stroke="#e0d5d7" stroke-width="1.5"/>
+
+          <text x="20" y="58" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9c3245">1. LOGIN</text>
+          <line x1="90" y1="66" x2="326" y2="66" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+          <text x="210" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">POST /auth/token</text>
+
+          <line x1="330" y1="80" x2="566" y2="80" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+          <text x="450" y="74" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">INCR rate:login:IP</text>
+          <line x1="570" y1="94" x2="334" y2="94" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrseq)"/>
+          <text x="450" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#9c3245">limite OK (5/min)</text>
+
+          <line x1="330" y1="112" x2="796" y2="112" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+          <text x="560" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">SELECT user + hashed_password</text>
+          <line x1="800" y1="126" x2="334" y2="126" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="3 3" marker-end="url(#arrseq)"/>
+
+          <line x1="330" y1="148" x2="94" y2="148" stroke="#c1596a" stroke-width="1.8" marker-end="url(#arrseq)"/>
+          <text x="210" y="142" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">200 OK + JWT (role: admin/viewer)</text>
+
+          <line x1="30" y1="168" x2="860" y2="168" stroke="#e0d5d7" stroke-width="1" stroke-dasharray="2 4"/>
+
+          <text x="20" y="192" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9c3245">2. CONSULTA (GET /books)</text>
+          <line x1="90" y1="200" x2="326" y2="200" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+          <text x="210" y="194" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">GET /books?author_id=3</text>
+
+          <line x1="330" y1="216" x2="566" y2="216" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrseq)"/>
+          <text x="450" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#9c3245">GET cache:books (planejado)</text>
+
+          <line x1="330" y1="240" x2="796" y2="240" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+          <text x="560" y="234" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">SELECT com joins (author, publisher, format)</text>
+          <line x1="800" y1="254" x2="334" y2="254" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrseq)"/>
+
+          <line x1="330" y1="276" x2="94" y2="276" stroke="#c1596a" stroke-width="1.8" marker-end="url(#arrseq)"/>
+          <text x="210" y="270" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">200 OK - lista expandida de livros</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>Modelagem de dados - Star Schema</h2>
+      <p>Duas tabelas de fato - <code>BOOKS</code> (o acervo) e <code>READINGS</code> (cada leitura, com progresso e avaliação) - cercadas de dimensões. <code>CATEGORIES</code> é hierárquica (auto-relacionamento), e <code>READINGS</code> se conecta a <code>TAGS</code> e <code>SHELVES</code> em relações muitos-para-muitos.</p>
+
+      <div class="flow-diagram">
+        <pre class="mermaid">
+erDiagram
+    USERS {
+        int id PK
+        varchar username UK
+        varchar email UK
+        varchar password
+        varchar role "admin/viewer"
+        datetime created_at
+        datetime updated_at
+    }
+
+    AUTHORS {
+        int id PK
+        varchar name
+        varchar gender "M/F"
+        varchar country_of_origin
+    }
+
+    PUBLISHERS {
+        int id PK
+        varchar name UK
+    }
+
+    COLLECTIONS {
+        int id PK
+        varchar name
+    }
+
+    SHELVES {
+        int id PK
+        varchar name UK
+    }
+
+    FORMATS {
+        int id PK
+        varchar name UK
+    }
+
+    READING_STATUS {
+        int id PK
+        varchar name UK
+    }
+
+    TAGS {
+        int id PK
+        varchar name UK
+    }
+
+    CATEGORIES {
+        int id PK
+        varchar name
+        int parent_id FK "NULL = root category"
+    }
+
+    BOOKS {
+        int id PK
+        int publisher_id FK
+        int collection_id FK
+        int format_id FK
+        int category_id FK
+        int author_id FK
+        varchar title
+        int original_publication_year
+        int total_pages
+        text cover_url
+        text synopsis
+    }
+
+    READINGS {
+        int id PK
+        int book_id FK
+        int status_id FK
+        datetime updated_at
+        date start_date
+        date end_date
+        int pages_read
+        varchar personal_goal
+        date club_date
+        varchar club_name
+        text review
+        int rating
+    }
+
+    READING_QUOTES {
+        int id PK
+        int reading_id FK
+        text content
+        int page_number
+        datetime created_at
+    }
+
+    PUBLISHERS ||--o{ BOOKS : "publishes"
+    COLLECTIONS ||--o{ BOOKS : "contains"
+    FORMATS ||--o{ BOOKS : "has"
+    AUTHORS ||--o{ BOOKS : "written by"
+    CATEGORIES ||--o{ BOOKS : "classified as"
+    CATEGORIES }o--o{ CATEGORIES : "sub-category of"
+    BOOKS ||--o{ READINGS : "has readings"
+    READING_STATUS ||--o{ READINGS : "defines"
+    READINGS }o--o{ TAGS : "tagged with"
+    READINGS }o--o{ SHELVES : "stored in"
+    READINGS ||--o{ READING_QUOTES : "has quotes"
+
+    classDef fact fill:#3d0f18,stroke:#2a0a11,color:#ffffff
+    classDef dim fill:#c1596a,stroke:#a84357,color:#ffffff
+    classDef bridge fill:#9c3245,stroke:#7a2334,color:#ffffff
+
+    class BOOKS,READINGS fact
+    class AUTHORS,PUBLISHERS,COLLECTIONS,FORMATS,CATEGORIES,USERS dim
+    class READING_STATUS,TAGS,SHELVES,READING_QUOTES bridge
+        </pre>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>O que foi implementado</h2>
+      <ul class="detail-list">
+        <li>Autenticação JWT com controle de acesso por papel (RBAC: admin/viewer)</li>
+        <li>CRUD completo de livros com relacionamentos expandidos (autor, editora, formato, categoria)</li>
+        <li>Migrações de banco versionadas com Alembic</li>
+        <li>Containerização completa com Docker</li>
+      </ul>
+    </div>
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/rafaelladuarte/booktrack-fastapi" class="btn btn-primary">Ver repositório da API</a>
+      <a href="booktrack-app.html" class="btn btn-ghost-light">Ver detalhes do frontend →</a>
+      <a href="booktrack.html" class="btn btn-ghost-light">← Voltar à visão geral</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'IBM Plex Mono, monospace',
+      primaryColor: '#c1596a',
+      primaryTextColor: '#ffffff',
+      primaryBorderColor: '#a84357',
+      lineColor: '#d8c6c9',
+      textColor: '#1c1516',
+      attributeBackgroundColorOdd: '#ffffff',
+      attributeBackgroundColorEven: '#ffffff'
+    }
+  });
+</script>
+</body>
+</html>
