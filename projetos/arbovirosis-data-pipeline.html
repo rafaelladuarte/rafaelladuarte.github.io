@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pipeline de Dados de Arboviroses — Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+    <p class="eyebrow">Big data · Lakehouse</p>
+    <h1>Pipeline de Dados de Arboviroses</h1>
+    <p class="detail-tagline">Pipeline para análise de arboviroses no Brasil, integrando dados epidemiológicos e climáticos em uma arquitetura de camadas no Databricks.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">⚠️ Em evolução</div></div>
+      <div><div class="label">Stack</div><div class="value">PySpark · Databricks · Delta Lake</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/rafaelladuarte/arbovirosis-data-pipeline</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Projeto pessoal para explorar cruzamento de fontes públicas — dados epidemiológicos de arboviroses (dengue, zika, chikungunya) e dados climáticos — sob a hipótese de que variáveis como temperatura e precipitação ajudam a explicar picos de notificação. Foi também uma forma de aprofundar Databricks e Delta Lake em um cenário de dados heterogêneos, fora do contexto de trabalho.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo da arquitetura</h2>
+      <p>Estrutura em camadas Bronze / Silver / Gold, com as duas fontes (epidemiológica e climática) entrando separadamente na camada bruta e sendo cruzadas apenas na camada Silver, já normalizadas por município e data — evita que inconsistências de uma fonte contaminem a outra antes da hora.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="30" width="140" height="55" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="53" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">Dados</text>
+          <text x="80" y="68" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">epidemiológicos</text>
+
+          <rect x="10" y="140" width="140" height="55" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="163" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">Dados</text>
+          <text x="80" y="178" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">climáticos</text>
+
+          <line x1="150" y1="57" x2="198" y2="95" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+          <line x1="150" y1="167" x2="198" y2="120" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+
+          <rect x="200" y="70" width="130" height="80" rx="2" fill="#3d0f18"/>
+          <text x="265" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Bronze</text>
+          <text x="265" y="123" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">raw, separado</text>
+
+          <line x1="330" y1="110" x2="378" y2="110" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+
+          <rect x="380" y="60" width="150" height="100" rx="2" fill="#7a2334"/>
+          <text x="455" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Silver</text>
+          <text x="455" y="118" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">normalização</text>
+          <text x="455" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">cruzamento</text>
+
+          <line x1="530" y1="110" x2="578" y2="110" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+
+          <rect x="580" y="70" width="140" height="80" rx="2" fill="#c1596a"/>
+          <text x="650" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Gold</text>
+          <text x="650" y="123" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#ffffff">Delta Lake</text>
+
+          <line x1="720" y1="110" x2="768" y2="110" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow5)"/>
+
+          <rect x="770" y="80" width="120" height="60" rx="2" fill="none" stroke="#9c3245" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="830" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#9c3245">Análise</text>
+          <text x="830" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#9c3245">(planejado)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>O que foi desenvolvido</h2>
+      <ul class="detail-list">
+        <li>Estrutura de pipeline em camadas (Bronze, Silver, Gold) sobre Delta Lake</li>
+        <li>Integração de múltiplas fontes de dados — epidemiológicas e climáticas — normalizadas por município e data</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      Evolução limitada no momento por restrição de infraestrutura (Databricks em ambiente pessoal tem custo, diferente de um projeto rodando em produção). A camada Gold e a etapa de análise cruzada ainda estão planejadas — deixei isso marcado no diagrama para não passar a impressão de algo pronto.
+    </div>
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline" class="btn btn-primary">Ver repositório</a>
+      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

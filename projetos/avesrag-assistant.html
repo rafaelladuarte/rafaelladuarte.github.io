@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistente de Aves com RAG — Rafaella Duarte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
+  </div>
+</nav>
+
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+    <p class="eyebrow">Inteligência artificial · RAG</p>
+    <h1>Assistente de Identificação de Aves</h1>
+    <p class="detail-tagline">Aplicação que usa Retrieval-Augmented Generation com LLMs para sugerir espécies de aves a partir de descrições textuais em linguagem natural.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">✅ Em produção · 🔧 Nova versão em desenvolvimento</div></div>
+      <div><div class="label">Stack</div><div class="value">Python · RAG · LLM · Streamlit</div></div>
+      <div><div class="label">Aplicação</div><div class="value"><a href="https://elladarte-avesrag-assistant.streamlit.app/" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">testar ao vivo →</a></div></div>
+      <div><div class="label">Dataset builder</div><div class="value"><a href="https://github.com/rafaelladuarte/avesrag-dataset-builder" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">github.com/.../avesrag-dataset-builder</a></div></div>
+    </div>
+  </div>
+</header>
+
+<main class="detail-body">
+  <div class="wrap-narrow">
+
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Nasceu de um projeto pessoal de catalogação de aves em Uberlândia. Em vez de exigir que o usuário soubesse o nome científico ou popular da espécie, o assistente permite descrever características — cor, tamanho, comportamento, habitat — e recebe sugestões de espécies compatíveis.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo RAG (versão em produção)</h2>
+      <p>A descrição do usuário é transformada em embedding, comparada contra uma base vetorial de características de espécies, e o contexto recuperado é usado para que o LLM gere uma resposta fundamentada — reduzindo alucinação em relação a perguntar direto ao modelo.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="70" width="140" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="95" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Descrição do</text>
+          <text x="80" y="111" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">usuário</text>
+
+          <line x1="150" y1="100" x2="198" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+          <rect x="200" y="60" width="150" height="80" rx="2" fill="#3d0f18"/>
+          <text x="275" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Embedding</text>
+          <text x="275" y="113" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">vetorização</text>
+
+          <line x1="350" y1="100" x2="398" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+          <rect x="400" y="50" width="160" height="100" rx="2" fill="#7a2334"/>
+          <text x="480" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">Busca semântica</text>
+          <text x="480" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">base de espécies</text>
+          <text x="480" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#f4e6e8">top-k matches</text>
+
+          <line x1="560" y1="100" x2="608" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+          <rect x="610" y="60" width="150" height="80" rx="2" fill="#c1596a"/>
+          <text x="685" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#ffffff">LLM + contexto</text>
+          <text x="685" y="113" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#ffffff">geração</text>
+
+          <line x1="760" y1="100" x2="798" y2="100" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow2)"/>
+
+          <rect x="800" y="70" width="95" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="847" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#1c1516">Sugestão</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>O que já funciona</h2>
+      <ul class="detail-list">
+        <li>Recuperação semântica com embeddings sobre a base de características morfológicas e comportamentais</li>
+        <li>Pipeline RAG completo para sugestão de espécies a partir de texto livre</li>
+        <li>Interface interativa em Streamlit, sem necessidade de conhecimento técnico do usuário</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      🔧 Uma nova versão está em desenvolvimento, com escopo bem maior: cobertura nacional, memória de conversa e validação por avistamentos reais. Abaixo está o desenho técnico dessa evolução — hoje só o pipeline de dados está parcialmente implementado, a API RAG ainda não foi iniciada.
+    </div>
+
+    <div class="detail-section">
+      <h2>Próxima versão: expansão nacional + RAG com clarificação</h2>
+      <p>A evolução em desenvolvimento parte de dois repositórios com responsabilidades separadas: o <strong>dataset builder</strong>, que já roda e funde dados do AVONET, WikiAves e eBird em uma base canônica no MongoDB Atlas; e a <strong>API RAG</strong>, ainda a construir, que vai consumir essa base para identificação por descrição e cruzamento com avistamentos reais.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 950 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="55" width="150" height="70" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="85" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1c1516">Fontes externas</text>
+          <text x="85" y="98" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#1c1516">AVONET · WikiAves</text>
+          <text x="85" y="111" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#1c1516">eBird</text>
+
+          <line x1="160" y1="90" x2="198" y2="90" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow3)"/>
+
+          <rect x="200" y="45" width="150" height="90" rx="2" fill="#3d0f18"/>
+          <text x="275" y="80" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Pipeline ETL</text>
+          <text x="275" y="98" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">normalização e</text>
+          <text x="275" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">fusão canônica</text>
+
+          <line x1="350" y1="90" x2="398" y2="90" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow3)"/>
+
+          <rect x="400" y="30" width="180" height="120" rx="2" fill="#7a2334"/>
+          <text x="490" y="55" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12.5" fill="#ffffff">MongoDB Atlas</text>
+          <text x="490" y="74" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">canonical_species</text>
+          <text x="490" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">embeddings</text>
+          <text x="490" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">(Vector Search)</text>
+          <text x="490" y="126" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">ebird_recentes (cache)</text>
+
+          <line x1="580" y1="90" x2="628" y2="90" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow3)"/>
+
+          <rect x="630" y="45" width="170" height="90" rx="2" fill="#c1596a"/>
+          <text x="715" y="75" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">API REST</text>
+          <text x="715" y="92" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#ffffff">FastAPI · RAG</text>
+          <text x="715" y="106" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#ffffff">clarificação · eBird</text>
+
+          <line x1="800" y1="90" x2="838" y2="90" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow3)"/>
+
+          <rect x="840" y="55" width="100" height="70" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="890" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">Cliente</text>
+          <text x="890" y="105" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#1c1516">app/frontend</text>
+        </svg>
+      </div>
+
+      <p style="margin-top:16px;">O pipeline documenta 6 etapas de enriquecimento semântico via LLM (extração → normalização → classificação → inferência → síntese → validação), mas hoje só as três primeiras rodam de fato. A fusão que gera a <code>canonical_species</code> ainda não consome os campos já normalizados nem os dados de ocorrência por município — está entre os próximos passos do roadmap.</p>
+    </div>
+
+    <div class="detail-section">
+      <h2>Fluxo de identificação com clarificação híbrida</h2>
+      <p>A avaliação de suficiência da descrição não é feita isoladamente por prompt: a busca vetorial roda sempre primeiro (mais barata e rápida), e o LLM avalia se a descrição é suficiente olhando tanto o texto do usuário quanto os candidatos reais retornados. Se não for, gera até 3 perguntas direcionadas às espécies que de fato competem entre si — em vez de perguntas genéricas.</p>
+
+      <div class="flow-diagram">
+        <svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow4" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="90" width="140" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="115" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">Descrição do</text>
+          <text x="80" y="130" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">usuário</text>
+
+          <line x1="150" y1="120" x2="198" y2="120" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="200" y="80" width="160" height="80" rx="2" fill="#3d0f18"/>
+          <text x="280" y="112" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Busca vetorial</text>
+          <text x="280" y="130" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">top-N candidatos</text>
+          <text x="280" y="144" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">(roda sempre 1º)</text>
+
+          <line x1="360" y1="120" x2="408" y2="120" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="410" y="75" width="180" height="90" rx="2" fill="#7a2334"/>
+          <text x="500" y="105" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">LLM avalia</text>
+          <text x="500" y="122" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">suficiência da</text>
+          <text x="500" y="136" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">descrição + candidatos</text>
+
+          <line x1="500" y1="165" x2="500" y2="200" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+          <text x="510" y="190" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#7a2334">insuficiente</text>
+
+          <rect x="410" y="200" width="180" height="50" rx="2" fill="#c1596a"/>
+          <text x="500" y="222" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="11" fill="#ffffff">Até 3 perguntas</text>
+          <text x="500" y="238" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#ffffff">direcionadas aos candidatos</text>
+
+          <path d="M410,225 L200,225 L200,120" fill="none" stroke="#7a2334" stroke-width="1.3" stroke-dasharray="4 2" marker-end="url(#arrow4)"/>
+          <text x="230" y="210" font-family="IBM Plex Mono, monospace" font-size="8" fill="#7a2334">nova rodada</text>
+
+          <line x1="600" y1="105" x2="648" y2="105" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+          <text x="600" y="95" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#7a2334">suficiente</text>
+
+          <rect x="650" y="65" width="150" height="80" rx="2" fill="#3d0f18"/>
+          <text x="725" y="97" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="11.5" fill="#ffffff">Candidatos</text>
+          <text x="725" y="114" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="#f4e6e8">ranqueados</text>
+
+          <line x1="725" y1="145" x2="725" y2="180" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow4)"/>
+
+          <rect x="640" y="180" width="170" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="725" y="204" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">Validação eBird</text>
+          <text x="725" y="220" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#1c1516">avistamentos locais (7 dias)</text>
+        </svg>
+      </div>
+
+      <p style="margin-top:16px;">A etapa final cruza os candidatos do RAG com os avistamentos reais registrados no eBird para a localidade do usuário nos últimos 7 dias: espécies vistas na região sobem no ranking, espécies raras na área caem — reduzindo falsos positivos. Essa integração está planejada primeiro via chamada REST direta e, depois, migrada para MCP como exercício de aprendizado, isolando sempre a chamada que processa texto do usuário da chamada com acesso à tool externa.</p>
+    </div>
+
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://elladarte-avesrag-assistant.streamlit.app/" class="btn btn-primary">Testar aplicação</a>
+      <a href="https://github.com/rafaelladuarte/avesrag-assistant" class="btn btn-ghost-light">Ver código (produção)</a>
+      <a href="https://github.com/rafaelladuarte/avesrag-dataset-builder" class="btn btn-ghost-light">Ver dataset builder</a>
+      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>
