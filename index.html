@@ -1,329 +1,407 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rafaella Duarte - Engenheira de Dados</title>
-<meta name="description" content="Portfólio e currículo de Rafaella Duarte, Engenheira de Dados. Python, ETL/ELT, BigQuery, Airflow, LLMs/RAG.">
-<link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Rafaella Duarte - Engenheira de Dados</title>
+	<meta name="description"
+		content="Portfólio e currículo de Rafaella Duarte, Engenheira de Dados. Python, ETL/ELT, BigQuery, Airflow, LLMs/RAG.">
+	<link rel="icon" type="image/png" href="images/favicon.png">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<nav>
-  <div class="wrap">
-    <a href="#top" class="nav-logo">rafaella<span>.duarte</span></a>
-    <ul class="nav-links">
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#experiencia">Experiência</a></li>
-      <li><a href="#formacao">Formação</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-  </div>
-</nav>
+	<nav>
+		<div class="wrap">
+			<a href="#top" class="nav-logo">rafaella<span>.duarte</span></a>
+			<ul class="nav-links">
+				<li><a href="#sobre">Sobre</a></li>
+				<li><a href="#experiencia">Experiência</a></li>
+				<li><a href="#formacao">Formação</a></li>
+				<li><a href="#skills">Skills</a></li>
+				<li><a href="#projetos">Projetos</a></li>
+				<li><a href="#contato">Contato</a></li>
+			</ul>
+		</div>
+	</nav>
 
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <p class="eyebrow">Engenharia de dados · Desenvolvedora Python</p>
-        <h1>Rafaella<br><em>Duarte</em></h1>
-        <p class="hero-role">Construo pipelines observáveis, resilientes e úteis - da ingestão à disponibilização, integrando engenharia de dados e IA aplicada com LLMs, RAG, embeddings e MCP.</p>
-        <div class="hero-tags">
-          <span class="tag">Python</span>
-          <span class="tag">BigQuery</span>
-          <span class="tag">Airflow</span>
-          <span class="tag">RabbitMQ</span>
-          <span class="tag">IA Aplicada</span>
-        </div>
-        <div class="hero-cta">
-          <a href="docs/CV_Rafaella_Duarte_Engenharia_Dados.pdf" class="btn btn-primary">Baixar CV</a>
-          <a href="#projetos" class="btn btn-ghost">Ver projetos</a>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <img src="images/hero-pedreiro-espinhaco.png" alt="" style="width:100%; height:auto; display:block;">
-      </div>
-    </div>
-  </div>
-</header>
+	<header class="hero" id="top">
+		<div class="wrap">
+			<div class="hero-grid">
+				<div class="hero-text">
+					<p class="eyebrow">Engenharia de dados · Desenvolvedora Python</p>
+					<h1>Rafaella<br><em>Duarte</em></h1>
+					<p class="hero-role">Construo pipelines de dados observáveis, resilientes e escaláveis - da ingestão
+						à disponibilização, combinando cloud, infraestrutura, processamento de dados e IA aplicada.
+					</p>
+					<div class="hero-tags">
+						<span class="tag">Python</span>
+						<span class="tag">BigQuery</span>
+						<span class="tag">Airflow</span>
+						<span class="tag">RabbitMQ</span>
+						<span class="tag">IA Aplicada</span>
+					</div>
+					<div class="hero-cta">
+						<a href="docs/CV_Rafaella_Duarte_Engenharia_Dados.pdf" class="btn btn-primary">Baixar CV</a>
+						<a href="#projetos" class="btn btn-ghost">Ver projetos</a>
+					</div>
+				</div>
+				<div class="hero-art" aria-hidden="true">
+					<img src="images/hero-pedreiro-espinhaco.png" alt=""
+						style="width:100%; height:auto; display:block;">
+				</div>
+			</div>
+		</div>
+	</header>
 
-<section id="sobre">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="about-photo">
-        <img src="images/perfil.jpg" alt="Rafaella Duarte">
-      </div>
-      <div class="about-text">
-        <p class="eyebrow" style="margin-bottom:16px;">Sobre</p>
-        <p><strong>Curiosa por natureza.</strong></p>
-        <p>Comecei como estagiária em 2021, escrevendo meus primeiros scrapers e pipelines, e hoje atuo com stacks modernas do ecossistema de dados, com certificações em Airflow e Databricks.</p>
-        <p>Sou formada em Ciências Econômicas - o que me ajuda a estruturar problemas antes de propor soluções técnicas, e não o contrário.</p>
-        <p>Fora do trabalho, desenvolvo um projeto pessoal de catalogação de aves em Uberlândia, com um assistente de identificação de espécies usando RAG e LLMs. Também ensino matemática para crianças e restauro livros como hobby.</p>
-      </div>
-    </div>
-  </div>
-</section>
+	<section id="sobre">
+		<div class="wrap">
+			<div class="about-grid">
+				<div class="about-photo">
+					<img src="images/perfil.jpg" alt="Rafaella Duarte">
+				</div>
+				<div class="about-text">
+					<p class="eyebrow" style="margin-bottom:16px;">Sobre</p>
+					<p><strong>Curiosa por natureza.</strong></p>
+					<p>Comecei como estagiária em 2021, escrevendo meus primeiros scrapers e pipelines, e hoje atuo com
+						stacks modernas do ecossistema de dados, com certificações em Airflow e Databricks.</p>
+					<p>Sou formada em Ciências Econômicas - o que me ajuda a estruturar problemas antes de propor
+						soluções técnicas, e não o contrário.</p>
+					<p>Fora do trabalho, desenvolvo um projeto pessoal de catalogação de aves em Uberlândia, com um
+						assistente de identificação de espécies usando RAG e LLMs. Também ensino matemática para
+						crianças e restauro livros como hobby.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="section-dark" id="skills">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Perfil técnico</p>
-      <h2>Da ingestão à entrega.</h2>
-      <p>Mais de 4 anos operando pipelines em produção - de centenas de milhões de registros históricos a fluxos contínuos de eventos.</p>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <p class="eyebrow">Linguagens</p>
-        <h3>Processamento</h3>
-        <ul class="skill-list"><li>Python · SQL</li><li>PySpark · Spark SQL</li><li>Bash Script</li></ul>
-      </div>
-      <div class="skill-group">
-        <p class="eyebrow">Orquestração</p>
-        <h3>Pipelines</h3>
-        <ul class="skill-list"><li>Apache Airflow</li><li>dbt</li><li>Apache Spark</li></ul>
-      </div>
-      <div class="skill-group">
-        <p class="eyebrow">Armazenamento</p>
-        <h3>Dados</h3>
-        <ul class="skill-list"><li>PostgreSQL · SQL Server</li><li>MongoDB · Elasticsearch</li><li>Neo4j</li></ul>
-      </div>
-      <div class="skill-group">
-        <p class="eyebrow">Streaming</p>
-        <h3>Mensageria</h3>
-        <ul class="skill-list"><li>Apache Kafka</li><li>RabbitMQ</li></ul>
-      </div>
-      <div class="skill-group">
-        <p class="eyebrow">Cloud</p>
-        <h3>Plataformas</h3>
-        <ul class="skill-list"><li>GCP (BigQuery, Cloud Functions)</li><li>Amazon (S3, Athena, Glue)</li><li>Databricks</li></ul>
-      </div>
-      <div class="skill-group">
-        <p class="eyebrow">Ferramentas</p>
-        <h3>Devops & APIs</h3>
-        <ul class="skill-list"><li>Docker · Git</li><li>FastAPI</li><li>Selenium · Power BI</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
+	<section class="section-dark" id="skills">
+		<div class="wrap">
 
-<section id="experiencia">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Trajetória</p>
-      <h2>Experiência</h2>
-    </div>
-    <div class="pipeline">
+			<div class="section-head">
+				<p class="eyebrow">Perfil técnico</p>
+				<h2>Da ingestão à disponibilização.</h2>
+				<p>
+					Construo pipelines de dados observáveis, resilientes e escaláveis,
+					integrando processamento distribuído, cloud, infraestrutura e IA aplicada.
+				</p>
+			</div>
 
-      <div class="stage">
-        <div class="stage-meta"><span>Jan 2025 - Atual</span></div>
-        <h3>Engenheira de Dados</h3>
-        <p class="company">E-xyon</p>
-        <p class="desc">Ciclo completo de dados jurídicos: ingestão via APIs públicas e web scraping, modelagem em SQL Server (300M+ processos), Data Warehouse no BigQuery e classificação semântica com LLMs e RAG.</p>
-        <div class="stack"><span>Python</span><span>SQL Server</span><span>BigQuery</span><span>FastAPI</span><span>LLMs/RAG</span></div>
-      </div>
+			<div class="skills-grid">
 
-      <div class="stage">
-        <div class="stage-meta"><span>Jan - Dez 2024</span></div>
-        <h3>Desenvolvedora Python ETL · Freelancer</h3>
-        <p class="company">Flow2Go</p>
-        <p class="desc">Scrapers com bypass de captcha para portais jurídicos, enriquecimento e padronização em MongoDB, disponibilização via API REST. Migração de workload on-premise para arquitetura serverless no GCP.</p>
-        <div class="stack"><span>Python</span><span>MongoDB</span><span>FastAPI</span><span>GCP</span></div>
-      </div>
+				<div class="skill-group">
+					<p class="eyebrow">Arquitetura</p>
+					<h3>Engenharia de Dados</h3>
+					<ul class="skill-list">
+						<li>ETL · ELT · Data Pipelines</li>
+						<li>Data Lake · Data Warehouse</li>
+						<li>Modelagem de Dados · Medallion</li>
+					</ul>
+				</div>
 
-      <div class="stage">
-        <div class="stage-meta"><span>Nov 2022 - Out 2023</span></div>
-        <h3>Engenheira de Dados</h3>
-        <p class="company">Linx</p>
-        <p class="desc">Pipelines de coleta para 10+ marketplaces, catálogo de 60M+ produtos, arquitetura orientada a filas via RabbitMQ.</p>
-        <div class="stack"><span>RabbitMQ</span><span>Elasticsearch</span><span>BigQuery</span><span>S3</span><span>Web Scraping</span></div>
-      </div>
+				<div class="skill-group">
+					<p class="eyebrow">Processamento</p>
+					<h3>Escala</h3>
+					<ul class="skill-list">
+						<li>Python · SQL · Bash</li>
+						<li>PySpark · Apache Spark</li>
+						<li>Processamento Distribuído</li>
+					</ul>
+				</div>
 
-      <div class="stage">
-        <div class="stage-meta"><span>Jan 2021 - Nov 2022</span></div>
-        <h3>Analista de Dados · Estágio</h3>
-        <p class="company">Nodis (Grupo StoneCo)</p>
-        <p class="desc">Pipelines ETL e scrapers para marketplaces, integração com VTEX via API, dashboards de KPIs em Data Studio.</p>
-        <div class="stack"><span>PostgreSQL</span><span>MongoDB</span><span>Web Scraping</span><span>Power BI</span></div>
-      </div>
+				<div class="skill-group">
+					<p class="eyebrow">Dados</p>
+					<h3>Armazenamento</h3>
+					<ul class="skill-list">
+						<li>PostgreSQL · SQL Server</li>
+						<li>MongoDB · Elasticsearch</li>
+						<li>BigQuery · Delta Lake</li>
+					</ul>
+				</div>
 
-    </div>
-  </div>
-</section>
+				<div class="skill-group">
+					<p class="eyebrow">Orquestração</p>
+					<h3>Pipelines</h3>
+					<ul class="skill-list">
+						<li>Apache Airflow · dbt</li>
+						<li>Apache Kafka · RabbitMQ</li>
+					</ul>
+				</div>
 
-<section id="formacao">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Formação & Certificações</p>
-      <h2>Base que sustenta a prática.</h2>
-    </div>
-    <div class="formacao-grid">
+				<div class="skill-group">
+					<p class="eyebrow">Cloud & DevOps</p>
+					<h3>Infraestrutura</h3>
+					<ul class="skill-list">
+						<li>GCP · AWS · Databricks</li>
+						<li>Docker · Git · CI/CD</li>
+						<li>Grafana</li>
+					</ul>
+				</div>
 
-      <div class="formacao-col">
-        <span class="eyebrow">Formação acadêmica</span>
-        <div class="edu-item">
-          <div class="edu-period">2026 - 2028</div>
-          <h3>Especialização em Engenharia de Dados</h3>
-          <div class="edu-school">PUC Minas - Pontifícia Universidade Católica de Minas Gerais</div>
-          <span class="edu-tag">Pós-graduação · em andamento</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-period">2019 - 2025</div>
-          <h3>Bacharelado em Ciências Econômicas</h3>
-          <div class="edu-school">UFU - Universidade Federal de Uberlândia</div>
-          <span class="edu-tag">Bacharelado</span>
-        </div>
-      </div>
+				<div class="skill-group">
+					<p class="eyebrow">IA Aplicada</p>
+					<h3>Dados não estruturados</h3>
+					<ul class="skill-list">
+						<li>RAG · Embeddings · LLMs</li>
+						<li>OCR · Classificação Semântica</li>
+						<li>FastAPI · REST APIs</li>
+					</ul>
+				</div>
 
-      <div class="formacao-col">
-        <span class="eyebrow">Certificações</span>
-        <div class="cert-cards">
-          <a href="https://www.credly.com/badges/a8f84885-a3e3-4c18-ac55-ab3fb4d568e0/" class="cert-card">
-            <div>
-              <div class="cert-name">Astronomer Certification for Apache Airflow 3</div>
-              <div class="cert-issuer">Credly</div>
-            </div>
-            <span class="cert-link">Ver certificado →</span>
-          </a>
-          <a href="https://credentials.databricks.com/67fcae89-4308-4cd4-ae32-41784e685b2b#acc.cRbtWFvX" class="cert-card">
-            <div>
-              <div class="cert-name">Academy Accreditation Databricks Fundamentals</div>
-              <div class="cert-issuer">Databricks</div>
-            </div>
-            <span class="cert-link">Ver certificado →</span>
-          </a>
-        </div>
-      </div>
+				<div class="skill-group">
+					<p class="eyebrow">Analytics</p>
+					<h3>Visualização</h3>
+					<ul class="skill-list">
+						<li>Power BI</li>
+						<li>Looker Studio</li>
+					</ul>
+				</div>
 
-    </div>
+			</div>
+		</div>
+	</section>
 
-    <div class="cursos-divider"><span class="eyebrow">Cursos complementares</span></div>
-    <div class="cursos-list">
-      <div class="curso-item">
-        <span class="curso-name">Building RAG Apps Using MongoDB</span>
-        <span class="curso-issuer">MongoDB University</span>
-        <a href="https://www.credly.com/earner/earned/badge/3bf0d385-853e-495a-8e38-df61f019c9bf" class="curso-link">Ver →</a>
-      </div>
-      <!-- <div class="curso-item">
+
+
+	<section id="experiencia">
+		<div class="wrap">
+			<div class="section-head">
+				<p class="eyebrow">Trajetória</p>
+				<h2>Experiência</h2>
+			</div>
+			<div class="pipeline">
+
+				<div class="stage">
+					<div class="stage-meta"><span>Jan 2025 - Atual</span></div>
+					<h3>Engenheira de Dados</h3>
+					<p class="company">E-xyon</p>
+					<p class="desc">Ciclo completo de dados jurídicos: ingestão via APIs públicas e web scraping,
+						modelagem em SQL Server (300M+ processos), Data Warehouse no BigQuery e classificação semântica
+						com LLMs e RAG.</p>
+					<div class="stack"><span>Python</span><span>SQL
+							Server</span><span>BigQuery</span><span>FastAPI</span><span>LLMs/RAG</span></div>
+				</div>
+
+				<div class="stage">
+					<div class="stage-meta"><span>Jan - Dez 2024</span></div>
+					<h3>Desenvolvedora Python ETL · Freelancer</h3>
+					<p class="company">Flow2Go</p>
+					<p class="desc">Scrapers com bypass de captcha para portais jurídicos, enriquecimento e padronização
+						em MongoDB, disponibilização via API REST. Migração de workload on-premise para arquitetura
+						serverless no GCP.</p>
+					<div class="stack"><span>Python</span><span>MongoDB</span><span>FastAPI</span><span>GCP</span></div>
+				</div>
+
+				<div class="stage">
+					<div class="stage-meta"><span>Nov 2022 - Out 2023</span></div>
+					<h3>Engenheira de Dados</h3>
+					<p class="company">Linx</p>
+					<p class="desc">Pipelines de coleta para 10+ marketplaces, catálogo de 60M+ produtos, arquitetura
+						orientada a filas via RabbitMQ.</p>
+					<div class="stack">
+						<span>RabbitMQ</span><span>Elasticsearch</span><span>BigQuery</span><span>S3</span><span>Web
+							Scraping</span>
+					</div>
+				</div>
+
+				<div class="stage">
+					<div class="stage-meta"><span>Jan 2021 - Nov 2022</span></div>
+					<h3>Analista de Dados · Estágio</h3>
+					<p class="company">Nodis (Grupo StoneCo)</p>
+					<p class="desc">Pipelines ETL e scrapers para marketplaces, integração com VTEX via API, dashboards
+						de KPIs em Data Studio.</p>
+					<div class="stack"><span>PostgreSQL</span><span>MongoDB</span><span>Web Scraping</span><span>Power
+							BI</span></div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section id="formacao">
+		<div class="wrap">
+			<div class="section-head">
+				<p class="eyebrow">Formação & Certificações</p>
+				<h2>Base que sustenta a prática.</h2>
+			</div>
+			<div class="formacao-grid">
+
+				<div class="formacao-col">
+					<span class="eyebrow">Formação acadêmica</span>
+					<div class="edu-item">
+						<div class="edu-period">2026 - 2028</div>
+						<h3>Especialização em Engenharia de Dados</h3>
+						<div class="edu-school">PUC Minas - Pontifícia Universidade Católica de Minas Gerais</div>
+						<span class="edu-tag">Pós-graduação · em andamento</span>
+					</div>
+					<div class="edu-item">
+						<div class="edu-period">2019 - 2025</div>
+						<h3>Bacharelado em Ciências Econômicas</h3>
+						<div class="edu-school">UFU - Universidade Federal de Uberlândia</div>
+						<span class="edu-tag">Bacharelado</span>
+					</div>
+				</div>
+
+				<div class="formacao-col">
+					<span class="eyebrow">Certificações</span>
+					<div class="cert-cards">
+						<a href="https://www.credly.com/badges/a8f84885-a3e3-4c18-ac55-ab3fb4d568e0/" class="cert-card">
+							<div>
+								<div class="cert-name">Astronomer Certification for Apache Airflow 3</div>
+								<div class="cert-issuer">Credly</div>
+							</div>
+							<span class="cert-link">Ver certificado →</span>
+						</a>
+						<a href="https://credentials.databricks.com/67fcae89-4308-4cd4-ae32-41784e685b2b#acc.cRbtWFvX"
+							class="cert-card">
+							<div>
+								<div class="cert-name">Academy Accreditation Databricks Fundamentals</div>
+								<div class="cert-issuer">Databricks</div>
+							</div>
+							<span class="cert-link">Ver certificado →</span>
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="cursos-divider"><span class="eyebrow">Cursos complementares</span></div>
+			<div class="cursos-list">
+				<div class="curso-item">
+					<span class="curso-name">Building RAG Apps Using MongoDB</span>
+					<span class="curso-issuer">MongoDB University</span>
+					<a href="https://www.credly.com/earner/earned/badge/3bf0d385-853e-495a-8e38-df61f019c9bf"
+						class="curso-link">Ver →</a>
+				</div>
+				<!-- <div class="curso-item">
         <span class="curso-name">Model Context Protocol (MCP)</span>
         <span class="curso-issuer">Anthropic</span>
         <a href="#" class="curso-link">Ver →</a>
       </div> -->
-      <div class="curso-item">
-        <span class="curso-name">Claude Code</span>
-        <span class="curso-issuer">Anthropic Academic</span>
-        <a href="https://verify.skilljar.com/c/uwvgybuzsrx4" class="curso-link">Ver →</a>
-      </div>
-      <div class="curso-item">
-        <span class="curso-name">LGPD e Privacidade</span>
-        <span class="curso-issuer">WoMakersCode</span>
-        <a href="#" class="curso-link">Ver →</a>
-      </div>
-    </div>
-  </div>
-</section>
+				<div class="curso-item">
+					<span class="curso-name">Claude Code</span>
+					<span class="curso-issuer">Anthropic Academic</span>
+					<a href="https://verify.skilljar.com/c/uwvgybuzsrx4" class="curso-link">Ver →</a>
+				</div>
+				<div class="curso-item">
+					<span class="curso-name">LGPD e Privacidade</span>
+					<span class="curso-issuer">WoMakersCode</span>
+					<a href="#" class="curso-link">Ver →</a>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<section class="section-dark" id="projetos">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Portfólio</p>
-      <h2>Projetos selecionados</h2>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="projects-grid">
-
-      
-      <div class="project-card">
-        <span class="project-status">✅ Concluído</span>
-        <h3>Pipeline de Dados Empresariais (CNPJ)</h3>
-        <p>2º lugar no Hackathon A3Data Challenge Women - ingestão, tratamento e visualização de dados públicos no GCP.</p>
-        <div class="project-links">
-          <a href="projetos/thedatagirl-hackathon.html">Detalhes →</a>
-          <a href="https://github.com/elladarte/thedatagirl_hackathon">Código →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status">✅ Concluído</span>
-        <h3>Assistente de Aves com RAG</h3>
-        <p>Identificação de espécies a partir de descrições textuais, com recuperação semântica por embeddings.</p>
-        <div class="project-links">
-          <a href="projetos/avesrag-assistant.html">Detalhes →</a>
-          <a href="https://elladarte-avesrag-assistant.streamlit.app/">Aplicação →</a>
-          <a href="https://github.com/rafaelladuarte/avesrag-assistant">Código →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status">✅ Concluído</span>
-        <h3>App de Gestão de Biblioteca Pessoal e Leitura</h3>
-        <p>Sistema completo - API em FastAPI com Star Schema e frontend em Django. Backend concluído; frontend em desenvolvimento.</p>
-        <div class="project-links">
-          <a href="projetos/booktrack.html">Detalhes →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status">✅ Concluído</span>
-        <h3>Pipeline de Dados de Vendas</h3>
-        <p>Medallion Architecture (Bronze/Silver/Gold), ingestão CSV + API, testes de qualidade no dbt, modelagem em Star Schema.</p>
-        <div class="project-links">
-          <a href="projetos/refresco-data-case.html">Detalhes →</a>
-          <a href="https://github.com/rafaelladuarte/refresco-data-case">Código →</a>
-        </div>
-      </div>
+	<section class="section-dark" id="projetos">
+		<div class="wrap">
+			<div class="section-head">
+				<p class="eyebrow">Portfólio</p>
+				<h2>Projetos selecionados</h2>
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="projects-grid">
 
 
-      <div class="project-card">
-        <span class="project-status">⚠️ Em evolução</span>
-        <h3>Pipeline de Arboviroses</h3>
-        <p>Análise de arboviroses no Brasil integrando dados epidemiológicos e climáticos, em camadas Bronze/Silver/Gold.</p>
-        <div class="project-links">
-          <a href="projetos/arbovirosis-data-pipeline.html">Detalhes →</a>
-          <a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline">Código →</a>
-        </div>
-      </div>
+				<div class="project-card">
+					<span class="project-status">✅ Concluído</span>
+					<h3>Pipeline de Dados Empresariais (CNPJ)</h3>
+					<p>2º lugar no Hackathon A3Data Challenge Women - ingestão, tratamento e visualização de dados
+						públicos no GCP.</p>
+					<div class="project-links">
+						<a href="projetos/thedatagirl-hackathon.html">Detalhes →</a>
+						<a href="https://github.com/elladarte/thedatagirl_hackathon">Código →</a>
+					</div>
+				</div>
+
+				<div class="project-card">
+					<span class="project-status">✅ Concluído</span>
+					<h3>Assistente de Aves com RAG</h3>
+					<p>Identificação de espécies a partir de descrições textuais, com recuperação semântica por
+						embeddings.</p>
+					<div class="project-links">
+						<a href="projetos/avesrag-assistant.html">Detalhes →</a>
+						<a href="https://elladarte-avesrag-assistant.streamlit.app/">Aplicação →</a>
+					</div>
+				</div>
+
+				<div class="project-card">
+					<span class="project-status">✅ Concluído</span>
+					<h3>Plataforma de Gestão de Acervo e Leitura Pessoal</h3>
+					<p>Sistema completo - API em FastAPI com Star Schema e frontend em Django. Backend concluído;
+						frontend em desenvolvimento.</p>
+					<div class="project-links">
+						<a href="projetos/booktrack.html">Detalhes →</a>
+						<a href="https://booktrack-app.onrender.com/">Aplicação →</a>
+					</div>
+				</div>
+
+				<div class="project-card">
+					<span class="project-status">✅ Concluído</span>
+					<h3>Pipeline de Dados de Vendas</h3>
+					<p>Medallion Architecture (Bronze/Silver/Gold), ingestão CSV + API, testes de qualidade no dbt,
+						modelagem em Star Schema.</p>
+					<div class="project-links">
+						<a href="projetos/refresco-data-case.html">Detalhes →</a>
+						<a href="https://github.com/rafaelladuarte/refresco-data-case">Código →</a>
+					</div>
+				</div>
 
 
-      <div class="project-card">
-        <span class="project-status">⚠️ Em evolução</span>
-        <h3>Scraper de Imobiliárias</h3>
-        <p>Coleta e processamento de dados de imóveis, orquestrado com Airflow, análises em Power BI.</p>
-        <div class="project-links">
-          <a href="projetos/real-state-data-pipeline.html">Detalhes →</a>
-          <a href="https://github.com/rafaelladuarte/real_state_data_pipeline">Código →</a>
-        </div>
-      </div>
+				<div class="project-card">
+					<span class="project-status">⚠️ Em evolução</span>
+					<h3>Pipeline de Arboviroses</h3>
+					<p>Análise de arboviroses no Brasil integrando dados epidemiológicos e climáticos, em camadas
+						Bronze/Silver/Gold.</p>
+					<div class="project-links">
+						<a href="projetos/arbovirosis-data-pipeline.html">Detalhes →</a>
+						<a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline">Código →</a>
+					</div>
+				</div>
 
-    </div>
-  </div>
-</section>
 
-<section id="contato">
-  <div class="wrap contact">
-    <p class="eyebrow" style="text-align:center;">Contato</p>
-    <h2>Vamos conversar sobre dados e tecnologia?</h2>
-    <p>Aberta a conversas sobre projetos, engenharia de dados, processamento distribuído, arquitetura e IA aplicada.</p>
-    <div class="contact-links">
-      <a href="https://www.linkedin.com/in/rafaella-duarte-carvalho/">LinkedIn</a>
-      <a href="https://github.com/rafaelladuarte/">GitHub</a>
-      <a href="https://www.instagram.com/duarte.py/">Instagram</a>
-    </div>
-  </div>
-</section>
+				<div class="project-card">
+					<span class="project-status">⚠️ Em evolução</span>
+					<h3>Scraper de Imobiliárias</h3>
+					<p>Coleta e processamento de dados de imóveis, orquestrado com Airflow, análises em Power BI.</p>
+					<div class="project-links">
+						<a href="projetos/real-state-data-pipeline.html">Detalhes →</a>
+						<a href="https://github.com/rafaelladuarte/real_state_data_pipeline">Código →</a>
+					</div>
+				</div>
 
-<footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-    <span>© 2026 Rafaella Duarte</span>
-    <a href="#top">Voltar ao topo ↑</a>
-  </div>
-</footer>
+			</div>
+		</div>
+	</section>
+
+	<section id="contato">
+		<div class="wrap contact">
+			<p class="eyebrow" style="text-align:center;">Contato</p>
+			<h2>Vamos conversar sobre dados e tecnologia?</h2>
+			<p>Aberta a conversas sobre projetos, engenharia de dados, processamento distribuído, arquitetura e IA
+				aplicada.</p>
+			<div class="contact-links">
+				<a href="https://www.linkedin.com/in/rafaella-duarte-carvalho/">LinkedIn</a>
+				<a href="https://github.com/rafaelladuarte/">GitHub</a>
+				<a href="https://www.instagram.com/duarte.py/">Instagram</a>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+			<span>© 2026 Rafaella Duarte</span>
+			<a href="#top">Voltar ao topo ↑</a>
+		</div>
+	</footer>
 
 </body>
+
 </html>

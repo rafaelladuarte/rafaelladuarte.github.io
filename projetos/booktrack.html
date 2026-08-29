@@ -1,77 +1,166 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>App de Gestão de Biblioteca Pessoal e Leitura — Rafaella Duarte</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App de Gestão de Biblioteca Pessoal e Leitura — Rafaella Duarte</title>
+  <link rel="icon" type="image/png" href="../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
-
-<nav>
-  <div class="wrap">
-    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
-    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
-  </div>
-</nav>
-
-<header class="detail-hero">
-  <div class="wrap">
-    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
-    <p class="eyebrow">Backend & Frontend · API REST + Star Schema</p>
-    <h1>App de Gestão de Biblioteca Pessoal e Leitura</h1>
-    <p class="detail-tagline">Sistema completo para gerenciar acervo pessoal de livros, acompanhar progresso de leitura e gerar análises por gênero, autor e status — API em FastAPI com modelagem em Star Schema, consumida por um frontend em Django.</p>
-    <div class="detail-meta">
-      <div><div class="label">Status geral</div><div class="value">🔧 Em desenvolvimento ativo</div></div>
-      <div><div class="label">Backend</div><div class="value">✅ Concluído</div></div>
-      <div><div class="label">Frontend</div><div class="value">🔧 Em andamento</div></div>
+  <nav>
+    <div class="wrap">
+      <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+      <ul class="nav-links">
+        <li><a href="../index.html#projetos">← Todos os projetos</a></li>
+      </ul>
     </div>
-  </div>
-</header>
-
-<main class="detail-body">
-  <div class="wrap-narrow">
-
-    <div class="detail-section">
-      <h2>Sobre o projeto</h2>
-      <p>O BookTrack nasceu como um estudo prático de API de produção — não só CRUD, mas as camadas que separam um protótipo de um serviço real: autenticação segura, controle de acesso por papel, modelagem de dados dimensional (Star Schema) e importação de acervo via CSV. O sistema permite cadastrar livros, acompanhar o progresso de cada leitura, registrar avaliações e citações, e expor uma view pública limitada do acervo para terceiros.</p>
-      <p>É dividido em duas partes com responsabilidades bem separadas: uma <strong style="color:var(--ink);">API REST em FastAPI</strong>, que concentra toda a regra de negócio e o acesso a dados, e um <strong style="color:var(--ink);">frontend server-side em Django</strong>, que consome essa API para oferecer a interface de uso.</p>
-    </div>
-
-    <div class="detail-section">
-      <h2>Explore cada parte</h2>
-      <div class="formacao-grid" style="gap:24px;">
-        <a href="booktrack-fastapi.html" class="cert-card" style="display:block; padding:24px;">
-          <div class="cert-name" style="font-size:18px;">⚙️ Backend — API FastAPI</div>
-          <div class="cert-issuer" style="margin-top:6px;">JWT · RBAC · PostgreSQL · Star Schema · Docker</div>
-          <p style="margin-top:12px; font-size:14px; color:var(--ink-soft);">Diagrama de fluxo de autenticação, modelagem de dados completa e o que já foi implementado.</p>
-          <span class="cert-link" style="display:inline-block; margin-top:14px;">Ver detalhes do backend →</span>
-        </a>
-        <a href="booktrack-app.html" class="cert-card" style="display:block; padding:24px;">
-          <div class="cert-name" style="font-size:18px;">🖥️ Frontend — App Django</div>
-          <div class="cert-issuer" style="margin-top:6px;">Django · Templates server-side</div>
-          <p style="margin-top:12px; font-size:14px; color:var(--ink-soft);">Interface que consome a API, estrutura do projeto e estado atual de desenvolvimento.</p>
-          <span class="cert-link" style="display:inline-block; margin-top:14px;">Ver detalhes do frontend →</span>
-        </a>
+  </nav>
+  <header class="detail-hero">
+    <div class="wrap">
+      <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+      <p class="eyebrow">Backend & Frontend · API REST + Star Schema</p>
+      <h1>Plataforma de Gestão de Acervo e Leitura Pessoal</h1>
+      <p class="detail-tagline">Sistema completo para gerenciar acervo pessoal de livros, acompanhar progresso de
+        leitura e gerar análises por gênero, autor e status — API em FastAPI com modelagem em Star Schema, consumida por
+        um frontend em Django.</p>
+      <div class="detail-meta">
+        <div>
+          <div class="label">Status geral</div>
+          <div class="value">🔧 Em desenvolvimento ativo</div>
+        </div>
+        <div>
+          <div class="label">Backend</div>
+          <div class="value">✅ Concluído</div>
+        </div>
+        <div>
+          <div class="label">Frontend</div>
+          <div class="value">🔧 Em andamento</div>
+        </div>
+      </div>
+      <div class="detail-links" style="display:flex; gap:14px; flex-wrap:wrap; margin-top:24px;">
+        <a href="https://booktrack-app.onrender.com/" target="_blank" rel="noopener" class="btn btn-ghost">🔗 Ver aplicação</a>
+        <a href="https://booktrack-backend-gzra.onrender.com/docs" target="_blank" rel="noopener" class="btn btn-ghost">📄 Swagger da API</a>
       </div>
     </div>
+  </header>
+  <main class="detail-body">
+    <div class="wrap-narrow">
+      <div class="detail-section">
+        <h2>Sobre o projeto</h2>
+        <p>O BookTrack nasceu como um estudo prático de API de produção — não só CRUD, mas as camadas que separam um
+          protótipo de um serviço real: autenticação segura, controle de acesso por papel, modelagem de dados
+          dimensional (Star Schema) e importação de acervo via CSV. O sistema permite cadastrar livros, acompanhar o
+          progresso de cada leitura, registrar avaliações e citações, e expor uma view pública limitada do acervo para
+          terceiros.</p>
+        <p>É dividido em duas partes com responsabilidades bem separadas: uma <strong style="color:var(--ink);">API REST
+            em FastAPI</strong>, que concentra toda a regra de negócio e o acesso a dados, e um <strong
+            style="color:var(--ink);">frontend server-side em Django</strong>, que consome essa API para oferecer a
+          interface de uso.</p>
+      </div>
+      <div class="detail-section">
+        <h2>Arquitetura simplificada</h2>
+        <div class="flow-diagram">
+          <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="var(--ink-soft)" />
+              </marker>
+              <marker id="arrow-rev" markerWidth="8" markerHeight="8" refX="2" refY="4" orient="auto">
+                <path d="M8,0 L0,4 L8,8 Z" fill="var(--ink-soft)" />
+              </marker>
+            </defs>
 
-    <div class="detail-footer-cta" style="margin-top:40px;">
-      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+            <!-- Django -->
+            <rect x="10" y="60" width="160" height="80" rx="10" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="90" y="95" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)"
+              font-weight="600">Django</text>
+            <text x="90" y="115" text-anchor="middle" font-family="Inter, sans-serif" font-size="12"
+              fill="var(--ink-soft)">Frontend server-side</text>
+
+            <!-- Arrow 1 -->
+            <line x1="170" y1="100" x2="270" y2="100" stroke="var(--ink-soft)" stroke-width="1.5"
+              marker-end="url(#arrow)" />
+            <text x="220" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--ink-soft)">HTTP</text>
+
+            <!-- FastAPI -->
+            <rect x="280" y="60" width="160" height="80" rx="10" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="360" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)"
+              font-weight="600">FastAPI</text>
+            <text x="360" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="12"
+              fill="var(--ink-soft)">API REST</text>
+            <text x="360" y="124" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--ink-soft)">JWT · RBAC</text>
+
+            <!-- Arrow 2 -->
+            <line x1="440" y1="100" x2="540" y2="100" stroke="var(--ink-soft)" stroke-width="1.5"
+              marker-end="url(#arrow)" />
+            <text x="490" y="90" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--ink-soft)">SQL</text>
+
+            <!-- PostgreSQL -->
+            <rect x="550" y="60" width="160" height="80" rx="10" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="630" y="90" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)"
+              font-weight="600">PostgreSQL</text>
+            <text x="630" y="108" text-anchor="middle" font-family="Inter, sans-serif" font-size="12"
+              fill="var(--ink-soft)">Star Schema</text>
+
+            <!-- Arrow 3 (vertical, bidirectional) -->
+            <line x1="360" y1="140" x2="360" y2="190" stroke="var(--ink-soft)" stroke-width="1.5"
+              marker-end="url(#arrow)" marker-start="url(#arrow-rev)" />
+            <text x="378" y="168" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="10"
+              fill="var(--ink-soft)">rate limit</text>
+
+            <!-- Redis -->
+            <rect x="280" y="190" width="160" height="60" rx="10" fill="none" stroke="var(--ink)" stroke-width="1.5" />
+            <text x="360" y="215" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="var(--ink)"
+              font-weight="600">Redis</text>
+            <text x="360" y="233" text-anchor="middle" font-family="Inter, sans-serif" font-size="12"
+              fill="var(--ink-soft)">Cache de rate limit</text>
+          </svg>
+        </div>
+        <p style="text-align:center; font-size:13px; color:var(--ink-soft);">Django consome a API FastAPI via HTTP; a
+          API concentra autenticação (JWT/RBAC), usa o Redis como cache de rate limit e acessa o PostgreSQL modelado em
+          Star Schema.</p>
+      </div>
+      <div class="detail-section">
+        <h2>Explore cada parte</h2>
+        <div class="formacao-grid" style="gap:24px;">
+          <a href="booktrack-fastapi.html" class="cert-card" style="display:block; padding:24px;">
+            <div class="cert-name" style="font-size:18px;">⚙️ Backend — API FastAPI</div>
+            <div class="cert-issuer" style="margin-top:6px;">JWT · RBAC · PostgreSQL · Star Schema · Docker</div>
+            <p style="margin-top:12px; font-size:14px; color:var(--ink-soft);">Diagrama de fluxo de autenticação,
+              modelagem de dados completa e o que já foi implementado.</p>
+            <span class="cert-link" style="display:inline-block; margin-top:14px;">Ver detalhes do backend →</span>
+          </a>
+          <a href="booktrack-app.html" class="cert-card" style="display:block; padding:24px;">
+            <div class="cert-name" style="font-size:18px;">🖥️ Frontend — App Django</div>
+            <div class="cert-issuer" style="margin-top:6px;">Django · Templates server-side</div>
+            <p style="margin-top:12px; font-size:14px; color:var(--ink-soft);">Interface que consome a API, estrutura do
+              projeto e estado atual de desenvolvimento.</p>
+            <span class="cert-link" style="display:inline-block; margin-top:14px;">Ver detalhes do frontend →</span>
+          </a>
+        </div>
+      </div>
+      <div class="detail-footer-cta" style="margin-top:40px;">
+        <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+      </div>
     </div>
-
-  </div>
-</main>
-
-<footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-    <span>© 2026 Rafaella Duarte</span>
-    <a href="../index.html">Voltar à home ↑</a>
-  </div>
-</footer>
-
+  </main>
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+      <span>© 2026 Rafaella Duarte</span>
+      <a href="../index.html">Voltar à home ↑</a>
+    </div>
+  </footer>
 </body>
+
 </html>
