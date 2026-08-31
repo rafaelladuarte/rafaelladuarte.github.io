@@ -272,3 +272,22 @@ footer a:hover{color:var(--white);}
 
 .callout{ border-left:3px solid var(--wine); background:var(--wine-tint); padding:18px 22px; font-size:14.5px; color:var(--wine-deep); margin-top:8px; }
 .detail-footer-cta{ display:flex; gap:14px; flex-wrap:wrap; padding-top:8px; }
+
+/* ============ PROJECTS LIST (TODOS OS PROJETOS) ============ */
+.projects-list{ display:flex; flex-direction:column; gap:24px; }
+.project-list-card{
+  display:grid; grid-template-columns: 240px 1fr; gap:32px;
+  background:var(--black); padding:24px; transition: background .18s ease; border: 1px solid var(--line-dark);
+}
+.project-list-card:hover{background:var(--black-soft);}
+.project-list-image{
+  background:var(--line-dark); border-radius: 4px; overflow:hidden; aspect-ratio: 4/3;
+}
+.project-list-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+.project-list-content{ display:flex; flex-direction:column; justify-content:center; }
+@media (max-width:720px){
+  .project-list-card{grid-template-columns:1fr; gap:24px;}
+  .project-list-image{aspect-ratio:16/9;}
+}
+.project-list-card h3{font-size:19px; color:var(--white); font-family:var(--body); font-weight:700; margin-bottom:8px;}
+.project-list-card p{font-size:14px; color:rgba(250,248,246,0.62); margin-bottom:16px;}
