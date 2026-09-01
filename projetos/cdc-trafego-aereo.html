@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenSky CDC DataLake — Rafaella Duarte</title>
+<link rel="icon" type="image/png" href="../images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
+    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
+  </div>
+</nav>
+<header class="detail-hero">
+  <div class="wrap">
+    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
+    <p class="eyebrow">Engenharia de dados · CDC · Data Lake</p>
+    <h1>OpenSky CDC DataLake</h1>
+    <p class="detail-tagline">Captura e replicação de dados de tráfego aéreo em tempo real utilizando Change Data Capture (CDC), com ingestão via Kafka/Debezium, processamento em Python e armazenamento em camadas Bronze e Silver de um Data Lake.</p>
+    <div class="detail-meta">
+      <div><div class="label">Status</div><div class="value">Concluído</div></div>
+      <div><div class="label">Stack</div><div class="value">PostgreSQL · Debezium · Kafka · MinIO · Python · Docker</div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">opensky-cdc-datalake</a></div></div>
+    </div>
+  </div>
+</header>
+<main class="detail-body">
+  <div class="wrap-narrow">
+    <div class="detail-section">
+      <h2>Contexto</h2>
+      <p>Projeto de engenharia de dados focado em replicar, em tempo real, o estado de aeronaves em voo capturado pela <a href="https://opensky-network.org/" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">OpenSky Network</a> — posição, altitude e velocidade. O desafio central é que a API da OpenSky não expõe um changelog nativo: ela sempre retorna o estado atual das aeronaves a cada consulta. Por isso, o CDC não atua diretamente sobre a fonte, mas sobre uma camada de staging em PostgreSQL, onde as inserções e atualizações geradas pelo polling da API se tornam o gatilho real do stream de eventos.</p>
+    </div>
+    <div class="detail-section">
+      <h2>Fluxo da arquitetura</h2>
+      <p>Um script Python consulta periodicamente a API da OpenSky e grava os estados das aeronaves em uma tabela de staging no PostgreSQL. O Debezium monitora o log de transação desse banco e publica cada alteração como evento no Kafka. A partir daí o fluxo se divide em duas frentes: um S3 Sink Connector do Kafka Connect grava os eventos crus em JSON na camada Bronze do MinIO, enquanto um consumidor Python assíncrono lê os mesmos tópicos, limpa os dados (remoção de <code>NaN</code>, tipagem) e grava arquivos particionados em Parquet na camada Silver.</p>
+      <div class="flow-diagram">
+        <svg viewBox="0 0 970 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arrow5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#7a2334"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="100" width="140" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="80" y="125" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">OpenSky</text>
+          <text x="80" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">Network API</text>
+
+          <line x1="150" y1="130" x2="198" y2="130" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+          <text x="174" y="120" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#7a2334">polling</text>
+
+          <rect x="200" y="90" width="150" height="80" rx="2" fill="#3d0f18"/>
+          <text x="275" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">PostgreSQL</text>
+          <text x="275" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">staging</text>
+          <text x="275" y="154" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">estados brutos</text>
+
+          <line x1="350" y1="130" x2="398" y2="130" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+          <text x="374" y="120" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" fill="#7a2334">log de transação</text>
+
+          <rect x="400" y="90" width="150" height="80" rx="2" fill="#7a2334"/>
+          <text x="475" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Debezium</text>
+          <text x="475" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">source connector</text>
+          <text x="475" y="154" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#f4e6e8">detecta mudanças</text>
+
+          <line x1="550" y1="130" x2="598" y2="130" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+
+          <rect x="600" y="90" width="140" height="80" rx="2" fill="#c1596a"/>
+          <text x="670" y="122" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#ffffff">Apache Kafka</text>
+          <text x="670" y="140" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#ffffff">tópicos de</text>
+          <text x="670" y="154" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#ffffff">eventos de mudança</text>
+
+          <path d="M740,110 L780,110 L780,50 L798,50" fill="none" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+          <path d="M740,150 L780,150 L780,215 L798,215" fill="none" stroke="#7a2334" stroke-width="1.5" marker-end="url(#arrow5)"/>
+
+          <rect x="800" y="20" width="160" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="880" y="44" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">S3 Sink Connector</text>
+          <text x="880" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">→ MinIO Bronze (JSON)</text>
+
+          <rect x="800" y="185" width="160" height="60" rx="2" fill="#ffffff" stroke="#7a2334" stroke-width="1.5"/>
+          <text x="880" y="209" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">Consumidor Python</text>
+          <text x="880" y="225" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9.5" fill="#1c1516">→ MinIO Silver (Parquet)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h2>O que foi desenvolvido</h2>
+      <ul class="detail-list">
+        <li>Infraestrutura completa orquestrada via Docker Compose (PostgreSQL, Kafka, Zookeeper, MinIO, Kafka Connect e app Python)</li>
+        <li>Aplicação de ingestão em Python com polling real da API da OpenSky Network para a tabela de staging</li>
+        <li>Conector Source do Debezium configurado para escutar alterações na tabela de staging do PostgreSQL</li>
+        <li>Conector Sink S3 do Kafka Connect gravando os eventos crus na camada Bronze do MinIO</li>
+        <li>Consumidor Python assíncrono com Pandas/PyArrow para limpeza e conversão dos eventos em Parquet</li>
+        <li>Camada Silver com arquivos particionados por data, prontos para consultas analíticas</li>
+      </ul>
+    </div>
+    <div class="callout">
+      🔧 Os próximos passos do roadmap incluem adicionar Apache Iceberg + Trino para consultas SQL nativas sobre o Data Lake, e construir dashboards no Apache Superset apontando para as camadas Silver/Ouro.
+    </div>
+    <div class="detail-footer-cta" style="margin-top:40px;">
+      <a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" class="btn btn-primary">Ver repositório</a>
+      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+    <span>© 2026 Rafaella Duarte</span>
+    <a href="../index.html">Voltar à home ↑</a>
+  </div>
+</footer>
+</body>
+</html>
