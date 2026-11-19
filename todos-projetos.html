@@ -44,6 +44,21 @@
 
 				<div class="project-list-card">
 					<div class="project-list-image">
+						<img src="images/pipeline-imoveis.jpeg" alt="Pipeline de Dados Imobiliários">
+					</div>
+					<div class="project-list-content">
+<span class="project-status">Concluído</span>
+					<h3>Pipeline de Dados Imobiliários</h3>
+					<p>Pipeline ponta a ponta de anúncios de imóveis de Uberlândia/MG: coleta paralela com Selenium,
+						camadas bronze/silver/gold, orquestração no Airflow e app web em React.</p>
+					<div class="project-links">
+						<a href="projetos/real-state-data-pipeline.html">Detalhes →</a>
+						<a href="https://github.com/rafaelladuarte/real_state_data_pipeline">Código →</a>
+					</div>					</div>
+				</div>
+
+				<div class="project-list-card">
+					<div class="project-list-image">
 						<img src="images/pipeline-air-traffic.jpg" alt="Pipeline de Dados de Tráfego Aéreo em Tempo Real">
 					</div>
 					<div class="project-list-content">
@@ -55,71 +70,6 @@
 							<a href="https://github.com/rafaelladuarte/opensky-cdc-datalake">Código →</a>
 						</div>
 					</div>
-				</div>
-
-
-
-				<div class="project-list-card">
-					<div class="project-list-image">
-						<img src="images/arboviroses.jpg" alt="Pipeline de Dados Epidemiológicos e Climáticos">
-					</div>
-					<div class="project-list-content">
-<span class="project-status">Em desenvolvimento</span>
-					<h3>Pipeline de Dados Epidemiológicos e Climáticos</h3>
-					<p>Integração de dados epidemiológicos e climáticos em uma arquitetura Medallion, utilizando AWS, Spark e
-						Databricks para processamento e análise de arboviroses no Brasil.</p>
-					<div class="project-links">
-						<a href="projetos/arbovirosis-data-pipeline.html">Detalhes →</a>
-						<a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline">Código →</a>
-					</div>					</div>
-				</div>
-
-
-				<div class="project-list-card">
-					<div class="project-list-image">
-						<img src="images/pipeline-cnpj.jpg" alt="Pipeline de Dados de Empresas (CNPJ)">
-					</div>
-					<div class="project-list-content">
-<span class="project-status">Concluído</span>
-					<h3>Pipeline de Dados de Empresas (CNPJ)</h3>
-					<p>2º lugar no Hackathon A3Data Challenge Women, com pipeline de ingestão e transformação de dados
-						públicos de CNPJ no GCP, utilizando processamento assíncrono, persistência e visualização dos
-						dados.
-					</p>
-					<div class="project-links">
-						<a href="projetos/thedatagirl-hackathon.html">Detalhes →</a>
-						<a href="https://github.com/elladarte/thedatagirl_hackathon">Código →</a>
-					</div>					</div>
-				</div>
-
-				<div class="project-list-card">
-					<div class="project-list-image">
-						<img src="images/avesrag.jpg" alt="Assistente de identificação de Aves">
-					</div>
-					<div class="project-list-content">
-<span class="project-status">Em produção</span>
-					<h3>Assistente de identificação de Aves</h3>
-					<p>Aplicação de RAG para identificação de espécies, utilizando embeddings, recuperação semântica e
-						LLMs a partir de descrições textuais.</p>
-					<div class="project-links">
-						<a href="projetos/avesrag-assistant.html">Detalhes →</a>
-						<a href="https://elladarte-avesrag-assistant.streamlit.app/">Aplicação →</a>
-					</div>					</div>
-				</div>
-
-				<div class="project-list-card">
-					<div class="project-list-image">
-						<img src="images/booktrack.jpg" alt="Plataforma de Gestão de Acervo e Leitura Pessoal">
-					</div>
-					<div class="project-list-content">
-<span class="project-status">Em produção</span>
-					<h3>Plataforma de Gestão de Acervo e Leitura Pessoal</h3>
-					<p>Plataforma de gestão de acervo pessoal, com API em FastAPI,
-						modelagem Star Schema e frontend em Django.</p>
-					<div class="project-links">
-						<a href="projetos/booktrack.html">Detalhes →</a>
-						<a href="https://booktrack-app.onrender.com/">Aplicação →</a>
-					</div>					</div>
 				</div>
 
 				<div class="project-list-card">
@@ -137,19 +87,65 @@
 					</div>					</div>
 				</div>
 
+				<div class="project-list-card">
+					<div class="project-list-image">
+						<img src="images/avesrag.jpg" alt="Assistente de identificação de Aves">
+					</div>
+					<div class="project-list-content">
+<span class="project-status">Em produção</span>
+					<h3>Assistente de identificação de Aves</h3>
+					<p>Aplicação de RAG para identificação de espécies a partir de descrições textuais, com busca lexical (TF-IDF) sobre as características e LLM para responder e pedir esclarecimentos. Inclui o dataset builder, que enriquece os dados via LLM.</p>
+					<div class="project-links">
+						<a href="projetos/avesrag-assistant.html">Detalhes →</a>
+						<a href="https://elladarte-avesrag-assistant.streamlit.app/">Aplicação →</a>
+							<a href="https://github.com/rafaelladuarte/avesrag-assistant">Código →</a>
+							<a href="https://github.com/rafaelladuarte/avesrag-dataset-builder">Dataset builder →</a>
+					</div>					</div>
+				</div>
 
 				<div class="project-list-card">
 					<div class="project-list-image">
-						<img src="images/pipeline-imoveis.jpeg" alt="Pipeline de Dados Imobiliários">
+						<img src="images/booktrack.jpg" alt="Plataforma de Gestão de Acervo e Leitura Pessoal">
+					</div>
+					<div class="project-list-content">
+<span class="project-status">Em produção</span>
+					<h3>Plataforma de Gestão de Acervo e Leitura Pessoal</h3>
+					<p>Plataforma de gestão de acervo pessoal, com API em FastAPI e frontend em Django, publicada no ar.</p>
+					<div class="project-links">
+						<a href="projetos/booktrack.html">Detalhes →</a>
+						<a href="https://booktrack-app.onrender.com/">Aplicação →</a>
+					</div>					</div>
+				</div>
+
+				<div class="project-list-card">
+					<div class="project-list-image">
+						<img src="images/pipeline-cnpj.jpg" alt="Pipeline de Dados de Empresas (CNPJ)">
+					</div>
+					<div class="project-list-content">
+<span class="project-status">Concluído</span>
+					<h3>Pipeline de Dados de Empresas (CNPJ)</h3>
+					<p>2º lugar no Hackathon A3Data Challenge Women (2021, em equipe), com pipeline de ingestão e transformação de dados
+						públicos de CNPJ no GCP, utilizando processamento assíncrono, persistência e visualização dos
+						dados.
+					</p>
+					<div class="project-links">
+						<a href="projetos/thedatagirl-hackathon.html">Detalhes →</a>
+						<a href="https://github.com/elladarte/thedatagirl_hackathon">Código →</a>
+					</div>					</div>
+				</div>
+
+				<div class="project-list-card">
+					<div class="project-list-image">
+						<img src="images/arboviroses.jpg" alt="Pipeline de Dados Epidemiológicos e Climáticos">
 					</div>
 					<div class="project-list-content">
 <span class="project-status">Em desenvolvimento</span>
-					<h3>Pipeline de Dados Imobiliários</h3>
-					<p>Pipeline de coleta e processamento de dados de imóveis, com web scraping, orquestração de
-						workflows no Airflow e disponibilização para análise no Power BI.</p>
+					<h3>Pipeline de Dados Epidemiológicos e Climáticos</h3>
+					<p>Integração de dados epidemiológicos e climáticos em uma arquitetura Medallion, utilizando AWS, Spark e
+						Databricks para processamento e análise de arboviroses no Brasil.</p>
 					<div class="project-links">
-						<a href="projetos/real-state-data-pipeline.html">Detalhes →</a>
-						<a href="https://github.com/rafaelladuarte/real_state_data_pipeline">Código →</a>
+						<a href="projetos/arbovirosis-data-pipeline.html">Detalhes →</a>
+						<a href="https://github.com/rafaelladuarte/arbovirosis-data-pipeline">Código →</a>
 					</div>					</div>
 				</div>
 
