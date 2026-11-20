@@ -3,7 +3,7 @@ title: Olá, mundo! Por que decidi escrever um blog
 date: 2026-11-19
 summary: Um pouco da minha trajetória até a tecnologia e por que resolvi criar este espaço para compartilhar aprendizados, experiências e ideias.
 tags: Apresentação, Tecnologia, Aprendizado
-draft: false
+draft: true
 ---
 
 Oi! Eu sou a Rafaella, trabalho com engenharia de dados e este é o primeiro post do meu blog.
