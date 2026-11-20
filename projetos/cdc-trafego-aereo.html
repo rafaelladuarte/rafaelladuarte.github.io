@@ -26,7 +26,7 @@
     <div class="detail-meta">
       <div><div class="label">Status</div><div class="value">Concluído</div></div>
       <div><div class="label">Stack</div><div class="value">PostgreSQL · Debezium · Kafka · MinIO · Python · Docker</div></div>
-      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">opensky-cdc-datalake</a></div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);" target="_blank" rel="noopener noreferrer">opensky-cdc-datalake</a></div></div>
     </div>
   </div>
 </header>
@@ -34,7 +34,7 @@
   <div class="wrap-narrow">
     <div class="detail-section">
       <h2>Contexto</h2>
-      <p>Projeto de engenharia de dados focado em replicar, em tempo real, o estado de aeronaves em voo capturado pela <a href="https://opensky-network.org/" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">OpenSky Network</a> — posição, altitude e velocidade. O desafio central é que a API da OpenSky não expõe um changelog nativo: ela sempre retorna o estado atual das aeronaves a cada consulta. Por isso, o CDC não atua diretamente sobre a fonte, mas sobre uma camada de staging em PostgreSQL, onde as inserções e atualizações geradas pelo polling da API se tornam o gatilho real do stream de eventos.</p>
+      <p>Projeto de engenharia de dados focado em replicar, em tempo real, o estado de aeronaves em voo capturado pela <a href="https://opensky-network.org/" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);" target="_blank" rel="noopener noreferrer">OpenSky Network</a> — posição, altitude e velocidade. O desafio central é que a API da OpenSky não expõe um changelog nativo: ela sempre retorna o estado atual das aeronaves a cada consulta. Por isso, o CDC não atua diretamente sobre a fonte, mas sobre uma camada de staging em PostgreSQL, onde as inserções e atualizações geradas pelo polling da API se tornam o gatilho real do stream de eventos.</p>
     </div>
     <div class="detail-section">
       <h2>Fluxo da arquitetura</h2>
@@ -102,7 +102,7 @@
       🔧 Os próximos passos do roadmap incluem adicionar Apache Iceberg + Trino para consultas SQL nativas sobre o Data Lake, e construir dashboards no Apache Superset apontando para as camadas Silver/Ouro.
     </div>
     <div class="detail-footer-cta" style="margin-top:40px;">
-      <a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" class="btn btn-primary">Ver repositório</a>
+      <a href="https://github.com/rafaelladuarte/opensky-cdc-datalake" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver repositório</a>
       <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
     </div>
   </div>

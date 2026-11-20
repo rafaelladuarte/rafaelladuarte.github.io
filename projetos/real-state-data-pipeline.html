@@ -28,7 +28,7 @@
     <div class="detail-meta">
       <div><div class="label">Status</div><div class="value">Concluído</div></div>
       <div><div class="label">Stack</div><div class="value">Python · Selenium · Airflow · MongoDB · PostgreSQL · React · Docker</div></div>
-      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/real_state_data_pipeline" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);">real_state_data_pipeline</a></div></div>
+      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/real-state-data-pipeline" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);" target="_blank" rel="noopener noreferrer">real-state-data-pipeline</a></div></div>
     </div>
   </div>
 </header>
@@ -125,12 +125,14 @@
       <h2>O que foi implementado</h2>
       <ul class="detail-list">
         <li><strong>Coleta paralela com limite global:</strong> workers compartilham uma fila com reserva atômica e um limitador de requisições (~0,8 anúncio/s no total), com retentativa e backoff exponencial</li>
-        <li><strong>Camada bruta reprocessável:</strong> o HTML de cada página fica comprimido em storage S3-compatível; se o site mudar, basta reparsear, sem coletar tudo de novo</li>
+        <li><strong>Camada bruta reprocessável:</strong> o HTML de cada página fica comprimido em storage S3-compatível; se o site mudar, basta reparsear, sem coletar tudo de novo. Depois que o lote é carregado no Postgres o HTML é apagado, e o que falhou fica em quarentena</li>
         <li><strong>Parsers testados:</strong> extração por JSON-LD e atributos <code>data-testid</code>, com testes (pytest) sobre HTML de exemplo versionado</li>
-        <li><strong>Carga idempotente:</strong> upsert em uma única transação no PostgreSQL; reexecutar não duplica nada e, se algo falha, nada é aplicado</li>
+        <li><strong>Carga idempotente e incremental:</strong> upsert em uma única transação no PostgreSQL; reexecutar não duplica nada e, se algo falha, nada é aplicado. Cada execução do tratamento é um lote, e a carga leva só os lotes ainda não carregados</li>
         <li><strong>Histórico de preço e ciclo de vida:</strong> cada coleta gera um snapshot, permitindo medir variação de preço e tempo no mercado</li>
         <li><strong>Orquestração com Airflow</strong> e alerta de falha, com tarefas mapeadas por worker</li>
-        <li><strong>App web:</strong> API Express somente leitura sobre views do Postgres e frontend React com gráficos, tabela equivalente a cada gráfico, tema claro/escuro e listagem filtrável de aluguel e venda</li>
+        <li><strong>Controle de qualidade:</strong> o parsing mede a taxa de campos vazios e de erros antes de gravar; se o parser quebrar, a execução falha sem gravar nada, e as métricas de cada etapa ficam registradas no MongoDB</li>
+        <li><strong>App web:</strong> API Express somente leitura sobre views do Postgres e frontend React com gráficos, mapa de Uberlândia colorido por bairro, tabela equivalente a cada gráfico, tema claro/escuro e listagem filtrável de aluguel e venda</li>
+        <li><strong>CI no GitHub Actions:</strong> lint com ruff, testes com Mongo e Postgres como serviços, build do frontend e da imagem de ETL</li>
         <li><strong>Coleta responsável:</strong> ritmo limitado, sem contornar proteções do site e sem enviar dados fictícios a formulários</li>
       </ul>
     </div>
@@ -138,37 +140,75 @@
     <div class="detail-section">
       <h2>O app</h2>
       <p>Uma página editorial em vez de um painel de relatório: a manchete pergunta <em>quanto custa alugar em Uberlândia?</em> e responde com a mediana do aluguel, seguida de gráficos cujos títulos enunciam a conclusão. Um seletor fixo alterna entre aluguel e venda, e a escolha vai para a URL para que o link seja compartilhável.</p>
+      <div class="gallery" style="grid-template-columns:1fr;">
+        <figure>
+          <img src="../images/pipeline-imoveis-demo.gif" alt="Demonstração do app: troca entre aluguel e venda, gráficos, tabela, mapa por bairro e tema escuro" loading="lazy" style="aspect-ratio:auto;">
+          <figcaption>Demonstração: gráficos, troca entre aluguel e venda, mapa por bairro e tema escuro</figcaption>
+        </figure>
+      </div>
       <div class="gallery">
         <figure>
-          <img src="../images/pipeline-imoveis-app.png" alt="App no tema claro, modo aluguel" style="object-position:top;">
+          <img src="../images/pipeline-imoveis-app.png" alt="App no tema claro, modo aluguel" loading="lazy" style="object-position:top;">
           <figcaption>Tema claro · aluguel</figcaption>
         </figure>
         <figure>
-          <img src="../images/pipeline-imoveis-app-dark.png" alt="App no tema escuro, modo venda" style="object-position:top;">
+          <img src="../images/pipeline-imoveis-app-dark.png" alt="App no tema escuro, modo venda" loading="lazy" style="object-position:top;">
           <figcaption>Tema escuro · venda</figcaption>
         </figure>
       </div>
     </div>
 
     <div class="detail-section">
-      <h2>Infraestrutura orquestrada</h2>
-      <p>Capturas das próprias ferramentas com os dados reais da coleta de 19/11/2026: a esteira rodando no terminal com dois workers em paralelo, o HTML bruto no storage S3 (bronze), as coleções no MongoDB (silver) e as tabelas e views no PostgreSQL (gold).</p>
+      <h2>Mapa por bairro</h2>
+      <p>Uberlândia desenhada em SVG com <code>d3-geo</code>, sem mapa de fundo e sem depender de rede. Cada bairro é pintado por preço médio, quantidade de anúncios ou idade do anúncio. Bairros com menos de 3 anúncios ficam em cinza, em vez de mostrar uma média enganosa. O contorno vem da Malha de Bairros do Censo 2022 do IBGE, e 94,7% dos anúncios caem em um bairro com contorno.</p>
       <div class="gallery">
         <figure>
-          <img src="../images/pipeline-imoveis-terminal.png" alt="Esteira em execução no terminal, com dois workers em paralelo" style="object-position:top;">
-          <figcaption>Esteira em execução</figcaption>
+          <img src="../images/pipeline-imoveis-mapa.png" alt="Mapa de Uberlândia colorido pelo preço médio de aluguel por bairro, tema claro" loading="lazy">
+          <figcaption>Aluguel · tema claro</figcaption>
         </figure>
         <figure>
-          <img src="../images/pipeline-imoveis-storage-s3.png" alt="HTML bruto no storage S3, camada bronze" style="object-position:top;">
-          <figcaption>Bronze · storage S3</figcaption>
+          <img src="../images/pipeline-imoveis-mapa-dark.png" alt="Mapa de Uberlândia colorido pelo preço médio de venda por bairro, tema escuro" loading="lazy">
+          <figcaption>Venda · tema escuro</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>Modelo de dados</h2>
+      <p>Na camada gold, o PostgreSQL guarda as dimensões (<code>tipo_imovel</code>, <code>modo_imovel</code>, <code>endereco</code>, <code>imobiliaria</code>), o fato <code>imovel</code>, com triggers que calculam custo por m² e faixa de área, e o histórico <code>imovel_snapshot</code>. As views alimentam o app, incluindo <code>imovel_ciclo_vida</code> (primeira e última coleta, dias no mercado e variação de preço).</p>
+      <div class="gallery" style="grid-template-columns:1fr;">
+        <figure>
+          <img src="../images/pipeline-imoveis-modelo-de-dados.png" alt="Diagrama do modelo de dados no PostgreSQL" loading="lazy" style="aspect-ratio:auto;">
+          <figcaption>Modelo de dados no PostgreSQL</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="detail-section">
+      <h2>A arquitetura funcionando</h2>
+      <p>Capturas das ferramentas do <code>docker-compose.yml</code> com os dados reais da coleta de 19/11/2026: o HTML bruto no console do RustFS (bronze), as coleções e as métricas de qualidade no Mongo Express (silver), e as tabelas e a view de ciclo de vida no pgAdmin (gold).</p>
+      <div class="gallery">
+        <figure>
+          <img src="../images/pipeline-imoveis-storage-s3.png" alt="HTML bruto no storage S3, camada bronze" loading="lazy" style="object-position:top;">
+          <figcaption>Bronze · storage S3 (RustFS)</figcaption>
         </figure>
         <figure>
-          <img src="../images/pipeline-imoveis-mongo.png" alt="Coleções do MongoDB, camada silver" style="object-position:top;">
-          <figcaption>Silver · MongoDB</figcaption>
+          <img src="../images/pipeline-imoveis-mongo-colecoes.png" alt="Coleções do MongoDB, camada silver" loading="lazy" style="object-position:top;">
+          <figcaption>Silver · coleções no MongoDB</figcaption>
         </figure>
         <figure>
-          <img src="../images/pipeline-imoveis-postgres.png" alt="Tabelas e views no PostgreSQL, camada gold" style="object-position:top;">
-          <figcaption>Gold · PostgreSQL</figcaption>
+          <img src="../images/pipeline-imoveis-mongo-qualidade.png" alt="Métricas de qualidade no MongoDB" loading="lazy" style="object-position:top;">
+          <figcaption>Silver · métricas de qualidade</figcaption>
+        </figure>
+        <figure>
+          <img src="../images/pipeline-imoveis-postgres-tabelas.png" alt="Tabelas do modelo no pgAdmin, camada gold" loading="lazy" style="object-position:top;">
+          <figcaption>Gold · tabelas no pgAdmin</figcaption>
+        </figure>
+      </div>
+      <div class="gallery" style="grid-template-columns:1fr;">
+        <figure>
+          <img src="../images/pipeline-imoveis-postgres-view.png" alt="View imovel_ciclo_vida consultada no Query Tool do pgAdmin" loading="lazy" style="aspect-ratio:auto;">
+          <figcaption>Gold · view <code>imovel_ciclo_vida</code> no pgAdmin</figcaption>
         </figure>
       </div>
     </div>
@@ -185,7 +225,7 @@
     </div>
 
     <div class="detail-footer-cta" style="margin-top:40px;">
-      <a href="https://github.com/rafaelladuarte/real_state_data_pipeline" class="btn btn-primary">Ver repositório</a>
+      <a href="https://github.com/rafaelladuarte/real-state-data-pipeline" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver repositório</a>
       <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
     </div>
 
