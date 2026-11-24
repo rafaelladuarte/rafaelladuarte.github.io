@@ -1,111 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Caderno de Receitas e Cardápio Semanal — Rafaella Duarte</title>
-<link rel="icon" type="image/png" href="../images/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
+  <meta charset="utf-8">
+  <title>Página movida</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://rafaelladuarte.github.io/projetos/caderno-receitas.html">
+  <meta http-equiv="refresh" content="0; url=caderno-receitas.html">
+  <script>location.replace("caderno-receitas.html" + location.hash);</script>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a href="../index.html" class="nav-logo">rafaella<span>.duarte</span></a>
-    <ul class="nav-links"><li><a href="../index.html#projetos">← Todos os projetos</a></li></ul>
-  </div>
-</nav>
-
-<header class="detail-hero">
-  <div class="wrap">
-    <a href="../index.html#projetos" class="detail-back">← voltar aos projetos</a>
-    <p class="eyebrow">Site estático · Projeto pessoal</p>
-    <h1>Caderno de Receitas e Cardápio Semanal</h1>
-    <p class="detail-tagline">Receitas com busca e filtros, gerador de cardápio de 7 dias sem repetir pratos e calendário de safra do Sudeste, tudo rodando no navegador a partir de dois arquivos JSON.</p>
-    <div class="detail-meta">
-      <div><div class="label">Status</div><div class="value">Concluído</div></div>
-      <div><div class="label">Stack</div><div class="value">HTML · CSS · JavaScript · Bootstrap 5 · GitHub Pages</div></div>
-      <div><div class="label">Código</div><div class="value"><a href="https://github.com/rafaelladuarte/weekly-menu-generator" style="color:var(--wine-light); border-bottom:1px solid var(--wine-light);" target="_blank" rel="noopener noreferrer">weekly-menu-generator</a></div></div>
-    </div>
-  </div>
-</header>
-
-<main class="detail-body">
-  <div class="wrap-narrow">
-
-    <div class="detail-section">
-      <h2>Contexto</h2>
-      <p>Um caderno de receitas para uso pessoal que também resolve o planejamento das refeições da semana. Ele reúne 140 receitas e monta um cardápio de 7 dias com prato principal, guarnição e salada, sem repetir pratos. Também mostra o que está em safra em cada mês, para priorizar ingredientes da estação.</p>
-      <p>Não há backend nem banco de dados: as receitas ficam em <code>receitas.json</code>, a safra em <code>sazonalidade.json</code>, e todo o processamento acontece no navegador.</p>
-    </div>
-
-    <div class="detail-section">
-      <h2>Funcionalidades</h2>
-      <ul class="detail-list">
-        <li><strong>Receitas:</strong> busca por nome que ignora acentos e filtros combináveis por tipo de prato, perfil nutricional (proteína, fibras, baixo carboidrato), momento do dia (pré e pós-treino, café da manhã), receitas já testadas e ingredientes da estação</li>
-        <li><strong>Cardápio da semana:</strong> sorteio dos 7 dias sem repetição, com opções para trocar um item, fixar outro ao gerar uma nova semana e dar preferência a uma tag ou à safra do mês</li>
-        <li><strong>Persistência local:</strong> o cardápio fica salvo no <code>localStorage</code> e continua o mesmo ao recarregar a página</li>
-        <li><strong>Calendário de safra:</strong> frutas, legumes e verduras com alta e média oferta em cada mês, quantas receitas usam cada alimento e uma matriz do ano com o mês atual em destaque</li>
-        <li><strong>Celular:</strong> layout responsivo, com filtros recolhidos e botões de tamanho adequado para toque</li>
-      </ul>
-    </div>
-
-    <div class="detail-section">
-      <h2>Capturas de tela</h2>
-      <div class="gallery">
-        <figure>
-          <img src="../images/weekly-menu-receitas.jpg" alt="Lista de receitas com busca e filtros" style="object-position: top;">
-          <figcaption>Receitas com busca e filtros</figcaption>
-        </figure>
-        <figure>
-          <img src="../images/weekly-menu.jpg" alt="Cardápio da semana com prato principal, guarnição e salada" style="object-position: top;">
-          <figcaption>Cardápio da semana</figcaption>
-        </figure>
-        <figure>
-          <img src="../images/weekly-menu-calendario-safra.jpg" alt="Calendário de safra por mês" style="object-position: top;">
-          <figcaption>Calendário de safra</figcaption>
-        </figure>
-        <figure>
-          <img src="../images/weekly-menu-celular.jpg" alt="Site aberto no celular" style="object-position: top;">
-          <figcaption>Versão para celular</figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <div class="detail-section">
-      <h2>Dados de safra</h2>
-      <p>O <code>sazonalidade.json</code> classifica cada mês de cada alimento como alta, média ou baixa oferta. A base mensal vem do mapa de sazonalidade da <a href="https://ceagesp.gov.br/wp-content/uploads/2024/02/Mapa-Sazonalidade-2019-a-2023_FEV24-.pdf" target="_blank" rel="noopener noreferrer">CEAGESP (2019 a 2023)</a>, que compara cada mês com a média de 60 meses de entradas no entreposto de São Paulo. A classificação por estação foi conferida com as listas do <a href="https://idec.org.br/dicas-e-direitos/descubra-quais-sao-os-alimentos-de-cada-estacao" target="_blank" rel="noopener noreferrer">IDEC</a> e da <a href="https://organis.org.br/as-frutas-de-cada-estacao/" target="_blank" rel="noopener noreferrer">Organis</a>.</p>
-      <p>A ligação entre receitas e safra é feita pelo nome do ingrediente. Alho, cebola e temperos verdes ficam fora do filtro "da estação", porque aparecem em quase todas as receitas.</p>
-    </div>
-
-    <div class="detail-section">
-      <h2>Decisões técnicas</h2>
-      <ul class="detail-list">
-        <li>HTML, CSS e JavaScript puros, sem etapa de build, publicados direto no GitHub Pages</li>
-        <li>Dados em JSON versionados no repositório: adicionar uma receita é acrescentar um objeto ao arquivo</li>
-        <li>Código compartilhado entre as três páginas em um único <code>app.js</code> (carregamento dos dados, janela da receita, escape de HTML e lógica de safra)</li>
-        <li>Bootstrap 5 usado apenas para a janela da receita e utilitários de layout</li>
-      </ul>
-    </div>
-
-    <div class="detail-footer-cta" style="margin-top:40px;">
-      <a href="https://rafaelladuarte.github.io/weekly-menu-generator/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Abrir aplicação</a>
-      <a href="https://github.com/rafaelladuarte/weekly-menu-generator" class="btn btn-ghost-light" target="_blank" rel="noopener noreferrer">Ver repositório</a>
-      <a href="../index.html#projetos" class="btn btn-ghost-light">← Voltar aos projetos</a>
-    </div>
-
-  </div>
-</main>
-
-<footer>
-  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;">
-    <span>© 2026 Rafaella Duarte</span>
-    <a href="../index.html">Voltar à home ↑</a>
-  </div>
-</footer>
-
+  <p>Esta página foi movida para <a href="caderno-receitas.html">caderno-receitas.html</a>.</p>
 </body>
 </html>
